@@ -13,6 +13,8 @@
 		<action path="/shop" name="shopForm" type="com.epam.st.presentation.ShopAction"
 			parameter="method" scope="session" validate="false">
 			<forward name="categories" path="/WEB-INF/pages/categories.jsp" />
+			<forward name="subcategories" path="/WEB-INF/pages/subcategories.jsp" />
+			<forward name="goods" path="/WEB-INF/pages/goods.jsp" />
 		</action>
 	</action-mappings>
 </struts-config>

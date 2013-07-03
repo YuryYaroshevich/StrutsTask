@@ -2,7 +2,6 @@
 	pageEncoding="utf-8"%>
 <%@ taglib uri="/struts-bean.tld" prefix="bean"%>
 <%@ taglib uri="/struts-nested.tld" prefix="nested"%>
-<%@ taglib uri="/struts-logic.tld" prefix="logic"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -13,7 +12,15 @@
 	<h2>Categories</h2>
 	<bean:define id="productsJDOM" name="shopForm" property="productsJDOM"
 		scope="session" />
-	<bean:define id="rootElement" name="productsJDOM"
-		property="rootElement" />
-	</body>
+	<bean:define id="root" name="productsJDOM" property="rootElement" />
+	<ul>
+		<nested:iterate name="root" property="children" id="category">
+			<bean:define id="attribute" name="category" property="attributes[0]" />
+			<li><a
+				href="shop.do?method=subcategories&categName=${attribute.value}">
+					<nested:write name="attribute" property="value" />
+			</a></li>
+		</nested:iterate>
+	</ul>
+</body>
 </html>

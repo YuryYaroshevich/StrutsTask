@@ -17,6 +17,11 @@ public final class ShopAction extends DispatchAction {
 	private static final SAXBuilder SAX_BUILDER = new SAXBuilder();
 
 	private static final String CATEGORIES_FORWARD = "categories";
+	private static final String SUBCATERIES_FORWARD = "subcategories";
+	private static final String GOODS_FORWARD = "goods";
+
+	// keys for getting values from request
+	private static final String CATEG_NAME = "categName";
 
 	public ActionForward categories(ActionMapping mapping, ActionForm form,
 			HttpServletRequest req, HttpServletResponse resp) throws Exception {
@@ -30,5 +35,25 @@ public final class ShopAction extends DispatchAction {
 			e.printStackTrace();
 			throw e;
 		}
+	}
+
+	public ActionForward subcategories(ActionMapping mapping, ActionForm form,
+			HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		try {
+			ShopForm shopForm = (ShopForm) form;
+			shopForm.setCategoryName(req.getParameter(CATEG_NAME));
+			Document productsJDOM = SAX_BUILDER
+					.build(getProperty(PRODUCTS_XML));
+			shopForm.setProductsJDOM(productsJDOM);
+			return mapping.findForward(SUBCATERIES_FORWARD);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} 
+	}
+	
+	public ActionForward goods(ActionMapping mapping, ActionForm form,
+			HttpServletRequest req, HttpServletResponse resp) {
+		return mapping.findForward(GOODS_FORWARD);
 	}
 }
