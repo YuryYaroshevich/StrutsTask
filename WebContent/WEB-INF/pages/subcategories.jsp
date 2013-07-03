@@ -11,35 +11,28 @@
 </head>
 <body>
 	<h2>Subcategories of ${categoryName}</h2>
-	<bean:define id="productsJDOM" name="shopForm" property="productsJDOM"
-		scope="session" />
-	<bean:define id="root" name="productsJDOM" property="rootElement" />
+	
+	<nested:define id="root" name="shopForm"
+		property="productsJDOM.rootElement" scope="session" />
 
 	<ul>
 		<nested:iterate name="root" property="children" id="category">
+			<nested:equal name="category" property="attributes[0].value"
+				value="${categoryName}">
 
-			<nested:iterate name="category" property="attributes" id="categAttr">
-
-				<nested:equal name="categAttr" property="value"
-					value="${shopForm.categoryName}">
-
-					<nested:iterate name="category" property="children"
-						id="subcategory">
-
-						<nested:iterate name="subcategory" property="attributes"
-							id="subcategAttr">
-
-							<nested:equal name="subcategAttr" property="name" value="name">
-								<li><a
-									href="shop.do?method=goods&categName=${categoryName}
-									&subcategName=${subcategAttr.value}">
-									${subcategAttr.value}</a></li>
-							</nested:equal>
-						</nested:iterate>
-					</nested:iterate>
-				</nested:equal>
-			</nested:iterate>
+				<nested:iterate name="category" property="children" id="subcategory">
+					<bean:define id="subcategName" name="subcategory"
+						property="attributes[0].value" />
+					<li><a
+						href="shop.do?method=goods&categName=${categoryName}
+									&subcategName=${subcategName}">
+							${subcategName}</a></li>
+				</nested:iterate>
+				
+			</nested:equal>
 		</nested:iterate>
 	</ul>
+	
+	<a href="shop.do?method=categories">Back</a>
 </body>
 </html>

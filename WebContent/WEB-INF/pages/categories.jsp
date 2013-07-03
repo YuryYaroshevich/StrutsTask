@@ -10,9 +10,8 @@
 </head>
 <body>
 	<h2>Categories</h2>
-	<bean:define id="productsJDOM" name="shopForm" property="productsJDOM"
-		scope="session" />
-	<bean:define id="root" name="productsJDOM" property="rootElement" />
+	<nested:define id="root" name="shopForm"
+		property="productsJDOM.rootElement" scope="session" />
 	<ul>
 		<nested:iterate name="root" property="children" id="category">
 			<bean:define id="attribute" name="category" property="attributes[0]" />

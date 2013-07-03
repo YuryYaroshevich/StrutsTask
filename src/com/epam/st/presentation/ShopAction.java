@@ -11,6 +11,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.actions.DispatchAction;
 import org.jdom2.Document;
+import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
 
 public final class ShopAction extends DispatchAction {
@@ -22,14 +23,13 @@ public final class ShopAction extends DispatchAction {
 
 	// keys for getting values from request
 	private static final String CATEG_NAME = "categName";
+	private static final String SUBCATEG_NAME = "subcategName";
 
 	public ActionForward categories(ActionMapping mapping, ActionForm form,
 			HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		try {
 			ShopForm shopForm = (ShopForm) form;
-			Document productsJDOM = SAX_BUILDER
-					.build(getProperty(PRODUCTS_XML));
-			shopForm.setProductsJDOM(productsJDOM);
+			updateProductsJDOM(shopForm);
 			return mapping.findForward(CATEGORIES_FORWARD);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -42,18 +42,30 @@ public final class ShopAction extends DispatchAction {
 		try {
 			ShopForm shopForm = (ShopForm) form;
 			shopForm.setCategoryName(req.getParameter(CATEG_NAME));
-			Document productsJDOM = SAX_BUILDER
-					.build(getProperty(PRODUCTS_XML));
-			shopForm.setProductsJDOM(productsJDOM);
+			updateProductsJDOM(shopForm);
 			return mapping.findForward(SUBCATERIES_FORWARD);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
-		} 
+		}
 	}
-	
+
 	public ActionForward goods(ActionMapping mapping, ActionForm form,
-			HttpServletRequest req, HttpServletResponse resp) {
-		return mapping.findForward(GOODS_FORWARD);
+			HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		try {
+			ShopForm shopForm = (ShopForm) form;
+			shopForm.setSubcategoryName(req.getParameter(SUBCATEG_NAME));
+			shopForm.setCategoryName(req.getParameter(CATEG_NAME));
+			updateProductsJDOM(shopForm);
+			return mapping.findForward(GOODS_FORWARD);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+	private static void updateProductsJDOM(ShopForm shopForm) throws Exception {
+		Document productsJDOM = SAX_BUILDER.build(getProperty(PRODUCTS_XML));
+		shopForm.setProductsJDOM(productsJDOM);		
 	}
 }
