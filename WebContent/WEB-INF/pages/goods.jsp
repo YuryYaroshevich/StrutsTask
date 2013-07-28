@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="/struts-html.tld" prefix="html"%>
 <%@ taglib uri="/struts-nested.tld" prefix="nested"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -44,6 +45,12 @@
 		</nested:equal>
 	</nested:iterate>
 
-	<a href="shop.do?method=subcategories&categName=${categoryName}">Back</a>	
+	<html:form action="shop.do?method=addGood" method="POST">
+		<input type="hidden" name="categName" value="${categoryName}" />
+		<input type="hidden" name="subcategName" value="${subcategoryName}" />
+		<input type="submit" value="ADD GOOD" />
+	</html:form>
+
+	<a href="shop.do?method=subcategories&categName=${categoryName}">Back</a>
 </body>
 </html>

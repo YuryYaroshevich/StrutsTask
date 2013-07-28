@@ -12,6 +12,66 @@ public final class ShopForm extends ActionForm {
 	// contains names of category and subcategory for page titles
 	private String categoryName;
 	private String subcategoryName;
+	
+	//good properties
+	private String producer;
+	private String model;
+	private String dateOfIssue;
+	private String color;
+	private String price;
+	private boolean notInStock; 
+
+	public String getProducer() {
+		return producer;
+	}
+
+	public void setProducer(String producer) {
+		this.producer = producer;
+	}
+
+	public String getModel() {
+		return model;
+	}
+
+	public void setModel(String model) {
+		this.model = model;
+	}
+
+	public String getDateOfIssue() {
+		return dateOfIssue;
+	}
+
+	public void setDateOfIssue(String dateOfIssue) {
+		this.dateOfIssue = dateOfIssue;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
+	}
+
+	public boolean isGoodNotInStock() {
+		return notInStock;
+	}
+
+	public void setNotInStock(String notInStock) {
+		if (notInStock != null) {
+			this.notInStock = true;
+		} else {
+			this.notInStock = false;
+		}
+	}
 
 	public String getCategoryName() {
 		return categoryName;

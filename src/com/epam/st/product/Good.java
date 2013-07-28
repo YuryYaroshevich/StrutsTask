@@ -2,15 +2,10 @@ package com.epam.st.product;
 
 public class Good {
 	private String producer;
-
 	private String model;
-
 	private String dateOfIssue;
-
 	private String color;
-
 	private String price;
-
 	private boolean notInStock;
 
 	// the value of price field if the product not in stock
