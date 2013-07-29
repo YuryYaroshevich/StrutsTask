@@ -1,6 +1,9 @@
 package com.epam.st.presentation;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionMapping;
 import org.jdom2.Document;
 
 public final class ShopForm extends ActionForm {
@@ -12,14 +15,22 @@ public final class ShopForm extends ActionForm {
 	// contains names of category and subcategory for page titles
 	private String categoryName;
 	private String subcategoryName;
-	
-	//good properties
+
+	// good properties
 	private String producer;
 	private String model;
 	private String dateOfIssue;
 	private String color;
 	private String price;
-	private boolean notInStock; 
+	private boolean notInStock;
+
+	public void reset(ActionMapping mapping, HttpServletRequest req) {
+		producer = null;
+		model = null;
+		dateOfIssue = null;
+		color = null;
+		price = null;
+	}
 
 	public String getProducer() {
 		return producer;
@@ -61,7 +72,7 @@ public final class ShopForm extends ActionForm {
 		this.price = price;
 	}
 
-	public boolean isGoodNotInStock() {
+	public boolean isNotInStock() {
 		return notInStock;
 	}
 

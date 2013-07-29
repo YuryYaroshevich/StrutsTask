@@ -24,8 +24,8 @@
 					<bean:define id="subcategName" name="subcategory"
 						property="attributes[0].value" />
 					<li><a
-						href="shop.do?method=goods&categName=${categoryName}
-									&subcategName=${subcategName}">
+						href="shop.do?method=goods&categoryName=${categoryName}
+									&subcategoryName=${subcategName}">
 							${subcategName}</a></li>
 				</nested:iterate>
 				

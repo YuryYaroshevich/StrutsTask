@@ -16,7 +16,7 @@
 		<nested:iterate name="root" property="children" id="category">
 			<bean:define id="attribute" name="category" property="attributes[0]" />
 			<li><a
-				href="shop.do?method=subcategories&categName=${attribute.value}">
+				href="shop.do?method=subcategories&categoryName=${attribute.value}">
 					<nested:write name="attribute" property="value" />
 			</a></li>
 		</nested:iterate>

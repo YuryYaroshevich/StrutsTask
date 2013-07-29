@@ -46,11 +46,11 @@
 	</nested:iterate>
 
 	<html:form action="shop.do?method=addGood" method="POST">
-		<input type="hidden" name="categName" value="${categoryName}" />
-		<input type="hidden" name="subcategName" value="${subcategoryName}" />
+		<input type="hidden" name="categoryName" value="${categoryName}" />
+		<input type="hidden" name="subcategoryName" value="${subcategoryName}" />
 		<input type="submit" value="ADD GOOD" />
 	</html:form>
 
-	<a href="shop.do?method=subcategories&categName=${categoryName}">Back</a>
+	<a href="shop.do?method=subcategories&categoryName=${categoryName}">Back</a>
 </body>
 </html>
