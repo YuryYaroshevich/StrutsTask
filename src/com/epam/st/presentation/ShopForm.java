@@ -2,11 +2,17 @@ package com.epam.st.presentation;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.struts.action.ActionForm;
+import org.apache.struts.Globals;
+import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.ActionMessage;
+import org.apache.struts.action.ActionMessages;
+import org.apache.struts.validator.ValidatorForm;
 import org.jdom2.Document;
 
-public final class ShopForm extends ActionForm {
+import com.util.GoodValidator;
+
+public final class ShopForm extends ValidatorForm {
 	private static final long serialVersionUID = 421564645392100602L;
 
 	// contains JDOM representation of products.xml
@@ -22,7 +28,7 @@ public final class ShopForm extends ActionForm {
 	private String dateOfIssue;
 	private String color;
 	private String price;
-	private boolean notInStock;
+	private String notInStock;
 
 	public void reset(ActionMapping mapping, HttpServletRequest req) {
 		producer = null;
@@ -30,6 +36,31 @@ public final class ShopForm extends ActionForm {
 		dateOfIssue = null;
 		color = null;
 		price = null;
+		notInStock = null;
+	}
+
+	public ActionErrors validate(ActionMapping mapping, HttpServletRequest req) {
+		ActionErrors errors = super.validate(mapping, req);
+		if (errors == null) {
+			errors = new ActionErrors();
+		}
+		ActionMessages errorMessages = new ActionMessages();
+		// validate date
+		String errorMessageKey = GoodValidator.validateDate(dateOfIssue);
+		processErrorMessageKey(errors, errorMessageKey);
+		// validate shop state of good
+		errorMessageKey = GoodValidator.validateShopState(price, notInStock);
+		processErrorMessageKey(errors, errorMessageKey);
+		if (!errorMessages.isEmpty()) {
+			errors.add(errorMessages);
+		}
+		return errors;
+	}
+
+	private static void processErrorMessageKey(ActionMessages errors, String key) {
+		if (!GoodValidator.VALID.equals(key)) {
+			errors.add(Globals.ERROR_KEY, new ActionMessage(key));
+		}
 	}
 
 	public String getProducer() {
@@ -72,16 +103,12 @@ public final class ShopForm extends ActionForm {
 		this.price = price;
 	}
 
-	public boolean isNotInStock() {
+	public String getNotInStock() {
 		return notInStock;
 	}
 
 	public void setNotInStock(String notInStock) {
-		if (notInStock != null) {
-			this.notInStock = true;
-		} else {
-			this.notInStock = false;
-		}
+		this.notInStock = notInStock;
 	}
 
 	public String getCategoryName() {

@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="/struts-html.tld" prefix="html"%>
 <%@ taglib uri="/struts-nested.tld" prefix="nested"%>
+<%@ taglib uri="/struts-logic.tld" prefix="logic"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -28,14 +29,39 @@
 					value="${subcategoryName}">
 
 					<nested:iterate id="good" name="subcategory" property="children">
-						<table>
-							<nested:iterate id="goodFeature" name="good" property="children">
+
+						<nested:form action="shop.do?method=updateGoods">
+							<table>
 								<tr>
-									<td>${goodFeature.name}</td>
-									<td>${goodFeature.value}</td>
+									<td>Producer:</td>
+									<td><nested:text name="good" property="children[0].text" /></td>
 								</tr>
-							</nested:iterate>
-						</table>
+								<tr>
+									<td>Model:</td>
+									<td><nested:text name="good" property="children[1].text" /></td>
+								</tr>
+								<tr>
+									<td>Date of issue:</td>
+									<td><nested:text name="good" property="children[2].text" /></td>
+								</tr>
+								<tr>
+									<td>Color:</td>
+									<td><nested:text name="good" property="children[3].text" /></td>
+								</tr>
+								<tr>
+									<logic:equal value="price" name="good"
+										property="children[4].name">
+										<td>Price:</td>
+										<td><nested:text name="good" property="children[4].text" /></td>
+									</logic:equal>
+									<logic:equal value="not-in-stock" name="good"
+										property="children[4].name">
+										<td>Not in stock</td>
+									</logic:equal>
+								</tr>
+							</table>
+							<nested:submit>UPDATE GOODS</nested:submit>
+						</nested:form>
 						<br></br>
 					</nested:iterate>
 

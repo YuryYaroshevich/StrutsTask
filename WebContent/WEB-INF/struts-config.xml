@@ -18,4 +18,11 @@
 			<forward name="addGood" path="/WEB-INF/pages/addGood.jsp" />
 		</action>
 	</action-mappings>
+
+	<message-resources parameter="com.resource.appresource" />
+
+	<plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+		<set-property property="pathnames"
+			value="/WEB-INF/validator-rules.xml, /WEB-INF/validation.xml" />
+	</plug-in>
 </struts-config>

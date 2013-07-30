@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="/struts-html.tld" prefix="html"%>
 <%@ taglib uri="/struts-bean.tld" prefix="bean"%>
+<%@ taglib uri="/struts-logic.tld" prefix="logic"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,6 +15,8 @@
 		property="subcategoryName" />
 
 	<h2>Add good in ${subcategName} subcategory</h2>
+
+	<html:errors />
 
 	<html:form action="shop.do?method=saveGood" method="POST">
 		<table>

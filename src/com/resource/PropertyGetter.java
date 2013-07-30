@@ -8,7 +8,7 @@ public final class PropertyGetter {
 	}
 	
 	private static final ResourceBundle resourceBundle = ResourceBundle
-			.getBundle("com.resource.resource");
+			.getBundle("com.resource.appresource");
 
 	private PropertyGetter() {
 	}

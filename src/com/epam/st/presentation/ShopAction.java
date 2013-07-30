@@ -18,6 +18,7 @@ import javax.xml.transform.stream.StreamSource;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.ActionMessages;
 import org.apache.struts.actions.DispatchAction;
 import org.jdom2.Document;
 import org.jdom2.input.SAXBuilder;
@@ -107,6 +108,13 @@ public final class ShopAction extends DispatchAction {
 		ShopForm shopForm = (ShopForm) form;
 		try {
 			if (isTokenValid(req)) {
+				ActionMessages errors = shopForm.validate(mapping, req);
+				if (!errors.isEmpty()) {
+					saveErrors(req, errors);
+					return mapping.findForward(ADD_GOOD_FORWARD);
+				}
+				resetToken(req);
+				
 				Templates saveGoodTempl = transformerFactory
 						.newTemplates(new StreamSource(
 								getProperty(SAVE_GOOD_XSLT)));
@@ -119,11 +127,11 @@ public final class ShopAction extends DispatchAction {
 				transf.setParameter(MODEL, shopForm.getModel());
 				transf.setParameter(DATE_OF_ISSUE, shopForm.getDateOfIssue());
 				transf.setParameter(COLOR, shopForm.getColor());
-				boolean notInStock = shopForm.isNotInStock();
-				if (notInStock) {
+				String notInStock = shopForm.getNotInStock();
+				if (notInStock == null) {
 					transf.setParameter(PRICE, shopForm.getPrice());
 				} else {
-					transf.setParameter(NOT_IN_STOCK, "true");
+					transf.setParameter(NOT_IN_STOCK, notInStock);
 				}
 				
 				StreamSource xmlSource = new StreamSource(
@@ -136,8 +144,7 @@ public final class ShopAction extends DispatchAction {
 				fileWriter.close();
 				stringWriter.close();
 				
-				updateProductsJDOM(shopForm);
-				resetToken(req);
+				updateProductsJDOM(shopForm);		
 			}
 			return mapping.findForward(GOODS_FORWARD);
 		} catch (Exception e) {
