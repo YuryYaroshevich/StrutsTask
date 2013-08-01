@@ -10,7 +10,7 @@ import org.apache.struts.action.ActionMessages;
 import org.apache.struts.validator.ValidatorForm;
 import org.jdom2.Document;
 
-import com.util.GoodValidator;
+import com.epam.st.util.GoodValidator;
 
 public final class ShopForm extends ValidatorForm {
 	private static final long serialVersionUID = 421564645392100602L;
@@ -22,6 +22,27 @@ public final class ShopForm extends ValidatorForm {
 	private String categoryName;
 	private String subcategoryName;
 
+	// ids
+	private int categoryId;
+	private int subcategoryId;
+
+	public int getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
+	}
+
+	public int getSubcategoryId() {
+		return subcategoryId;
+	}
+
+	public void setSubcategoryId(int subcategoryId) {
+		this.subcategoryId = subcategoryId;
+	}
+	
+	
 	// good properties
 	private String producer;
 	private String model;

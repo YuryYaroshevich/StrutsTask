@@ -1,7 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<pr:products xmlns:pr="http://www.epam.com/products"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.epam.com/products products.xsd">
+<?xml version="1.0" encoding="UTF-8"?><pr:products xmlns:pr="http://www.epam.com/products" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.epam.com/products products.xsd">
 	<pr:category name="car">
 		<pr:subcategory name="taxi">
 			<pr:good>
@@ -9,23 +6,23 @@
 				<pr:model>ik565</pr:model>
 				<pr:date-of-issue>04-11-2011</pr:date-of-issue>
 				<pr:color>yellow</pr:color>
-				<pr:not-in-stock />
+				<pr:not-in-stock/>
 			</pr:good>
 			<pr:good>
 				<pr:producer>RideThem</pr:producer>
 				<pr:model>Yu545</pr:model>
 				<pr:date-of-issue>04-11-2011</pr:date-of-issue>
 				<pr:color>orange</pr:color>
-				<pr:not-in-stock />
+				<pr:not-in-stock/>
 			</pr:good>
 			<pr:good>
 				<pr:producer>sdfsdfs</pr:producer>
 				<pr:model>fg565</pr:model>
 				<pr:date-of-issue>11-02-2011</pr:date-of-issue>
 				<pr:color>dfgfg</pr:color>
-				<pr:not-in-stock />
+				<pr:not-in-stock/>
 			</pr:good>
-		</pr:subcategory>
+		<pr:good><pr:producer>fghfh</pr:producer><pr:model>fg453</pr:model><pr:date-of-issue>12-02-1995</pr:date-of-issue><pr:color>sdf</pr:color><pr:not-in-stock/></pr:good></pr:subcategory>
 		<pr:subcategory name="cargoTaxi">
 			<pr:good>
 				<pr:producer>HeavyTaxi</pr:producer>
@@ -34,7 +31,7 @@
 				<pr:color>blue</pr:color>
 				<pr:price>56700</pr:price>
 			</pr:good>
-		</pr:subcategory>
+		<pr:good><pr:producer>dfgdfg</pr:producer><pr:model>fg453</pr:model><pr:date-of-issue>15-05-2011</pr:date-of-issue><pr:color>wer</pr:color><pr:price>345</pr:price></pr:good></pr:subcategory>
 	</pr:category>
 	<pr:category name="ice-cream">
 		<pr:subcategory name="fruit ice-cream">

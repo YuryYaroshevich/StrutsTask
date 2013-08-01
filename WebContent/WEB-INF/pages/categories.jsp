@@ -10,15 +10,19 @@
 </head>
 <body>
 	<h2>Categories</h2>
-	<nested:define id="root" name="shopForm"
+	<bean:define id="root" name="shopForm"
 		property="productsJDOM.rootElement" scope="session" />
+	<bean:define id="productsJDOMHandler"
+		type="com.epam.st.util.ProductsJDOMHandler" />
+
 	<ul>
 		<nested:iterate name="root" property="children" id="category">
-			<bean:define id="attribute" name="category" property="attributes[0]" />
+			<nested:define id="categoryName" property="attribute(name).value" />
+
 			<li><a
-				href="shop.do?method=subcategories&categoryName=${attribute.value}">
-					<nested:write name="attribute" property="value" />
-			</a></li>
+				href="shop.do?method=subcategories&categoryName=${categoryName}">
+					${categoryName}(${productsJDOMHandler.goodsNumbInCateg(categoryName,
+					shopForm.productsJDOM)})</a></li>
 		</nested:iterate>
 	</ul>
 </body>

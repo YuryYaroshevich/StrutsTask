@@ -1,4 +1,4 @@
-package com.util;
+package com.epam.st.util;
 
 import static com.epam.st.stconstant.STConstant.EMPTY_DATE;
 import static com.epam.st.stconstant.STConstant.NOT_IN_STOCK_TO_FALSE;

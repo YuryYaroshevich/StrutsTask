@@ -23,6 +23,8 @@ import org.apache.struts.actions.DispatchAction;
 import org.jdom2.Document;
 import org.jdom2.input.SAXBuilder;
 
+import com.epam.st.util.ProductsJDOMHandler;
+
 public final class ShopAction extends DispatchAction {
 	private static final SAXBuilder SAX_BUILDER = new SAXBuilder();
 
@@ -65,8 +67,12 @@ public final class ShopAction extends DispatchAction {
 			HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		try {
 			ShopForm shopForm = (ShopForm) form;
-			shopForm.setCategoryName(req.getParameter(CATEG_NAME));
 			updateProductsJDOM(shopForm);
+			String categName = req.getParameter(CATEG_NAME);
+			shopForm.setCategoryName(categName);
+			int categId = ProductsJDOMHandler.getCategoryListIndex(categName,
+					shopForm.getProductsJDOM());
+			shopForm.setCategoryId(categId);
 			return mapping.findForward(SUBCATERIES_FORWARD);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -78,9 +84,18 @@ public final class ShopAction extends DispatchAction {
 			HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		try {
 			ShopForm shopForm = (ShopForm) form;
-			shopForm.setSubcategoryName(req.getParameter(SUBCATEG_NAME));
-			shopForm.setCategoryName(req.getParameter(CATEG_NAME));
+			String categName = req.getParameter(CATEG_NAME);
+			String subcategName = req.getParameter(SUBCATEG_NAME);
+			shopForm.setSubcategoryName(subcategName);
+
 			updateProductsJDOM(shopForm);
+			int categId = ProductsJDOMHandler.getCategoryListIndex(categName,
+					shopForm.getProductsJDOM());
+			shopForm.setCategoryId(categId);
+			int subcategId = ProductsJDOMHandler.getSubcategoryListIndex(
+					categId, subcategName, shopForm.getProductsJDOM());
+			shopForm.setSubcategoryId(subcategId);
+			
 			saveToken(req);
 			return mapping.findForward(GOODS_FORWARD);
 		} catch (Exception e) {
@@ -114,7 +129,7 @@ public final class ShopAction extends DispatchAction {
 					return mapping.findForward(ADD_GOOD_FORWARD);
 				}
 				resetToken(req);
-				
+
 				Templates saveGoodTempl = transformerFactory
 						.newTemplates(new StreamSource(
 								getProperty(SAVE_GOOD_XSLT)));
@@ -133,7 +148,7 @@ public final class ShopAction extends DispatchAction {
 				} else {
 					transf.setParameter(NOT_IN_STOCK, notInStock);
 				}
-				
+
 				StreamSource xmlSource = new StreamSource(
 						getProperty(PRODUCTS_XML));
 				stringWriter = new StringWriter();
@@ -143,13 +158,13 @@ public final class ShopAction extends DispatchAction {
 				fileWriter.append(stringWriter.toString());
 				fileWriter.close();
 				stringWriter.close();
-				
-				updateProductsJDOM(shopForm);		
+
+				updateProductsJDOM(shopForm);
 			}
 			return mapping.findForward(GOODS_FORWARD);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
-		} 
+		}
 	}
 }

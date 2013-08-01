@@ -11,28 +11,21 @@
 </head>
 <body>
 	<h2>Subcategories of ${categoryName}</h2>
-	
-	<nested:define id="root" name="shopForm"
-		property="productsJDOM.rootElement" scope="session" />
 
 	<ul>
-		<nested:iterate name="root" property="children" id="category">
-			<nested:equal name="category" property="attributes[0].value"
-				value="${categoryName}">
+		<bean:define id="category" name="shopForm"
+			property="productsJDOM.rootElement.children[${shopForm.categoryId}]" />
 
-				<nested:iterate name="category" property="children" id="subcategory">
-					<bean:define id="subcategName" name="subcategory"
-						property="attributes[0].value" />
-					<li><a
-						href="shop.do?method=goods&categoryName=${categoryName}
+		<nested:iterate name="category" property="children" id="subcategory">
+			<nested:define id="subcategName" property="attribute(name).value" />
+
+			<li><a
+				href="shop.do?method=goods&categoryName=${categoryName}
 									&subcategoryName=${subcategName}">
-							${subcategName}</a></li>
-				</nested:iterate>
-				
-			</nested:equal>
+					${subcategName}</a></li>
 		</nested:iterate>
 	</ul>
-	
+
 	<a href="shop.do?method=categories">Back</a>
 </body>
 </html>
