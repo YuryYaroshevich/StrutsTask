@@ -1,6 +1,10 @@
 package com.epam.st.product;
 
-public class Good {
+import java.io.Serializable;
+
+public class Good implements Serializable {
+	private static final long serialVersionUID = -5560992991758073227L;
+	
 	private String producer;
 	private String model;
 	private String dateOfIssue;
@@ -76,10 +80,12 @@ public class Good {
 	}
 
 	public boolean isNotInStock() {
+		System.out.println("inside isNotInStiok " + notInStock);
 		return notInStock;
 	}
 
 	public void setNotInStock(boolean notInStock) {
+		System.out.println("inside setter " + notInStock);
 		this.notInStock = notInStock;
 	}
 	

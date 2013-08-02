@@ -10,6 +10,7 @@ import org.apache.struts.action.ActionMessages;
 import org.apache.struts.validator.ValidatorForm;
 import org.jdom2.Document;
 
+import com.epam.st.product.Good;
 import com.epam.st.util.GoodValidator;
 
 public final class ShopForm extends ValidatorForm {
@@ -26,38 +27,26 @@ public final class ShopForm extends ValidatorForm {
 	private int categoryId;
 	private int subcategoryId;
 
-	public int getCategoryId() {
-		return categoryId;
-	}
-
-	public void setCategoryId(int categoryId) {
-		this.categoryId = categoryId;
-	}
-
-	public int getSubcategoryId() {
-		return subcategoryId;
-	}
-
-	public void setSubcategoryId(int subcategoryId) {
-		this.subcategoryId = subcategoryId;
-	}
-	
-	
 	// good properties
-	private String producer;
-	private String model;
-	private String dateOfIssue;
-	private String color;
-	private String price;
-	private String notInStock;
+	/*
+	 * private String producer; private String model; private String
+	 * dateOfIssue; private String color; private String price; private String
+	 * notInStock;
+	 */
 
-	public void reset(ActionMapping mapping, HttpServletRequest req) {
-		producer = null;
-		model = null;
-		dateOfIssue = null;
-		color = null;
-		price = null;
-		notInStock = null;
+	private Good good;
+
+	public ShopForm() {
+		good = new Good();
+	}
+	
+	public void resetGood() {
+		good.setColor(null);
+		good.setDateOfIssue(null);
+		good.setModel(null);
+		good.setPrice(null);
+		good.setProducer(null);
+		good.setNotInStock(false);	
 	}
 
 	public ActionErrors validate(ActionMapping mapping, HttpServletRequest req) {
@@ -67,10 +56,12 @@ public final class ShopForm extends ValidatorForm {
 		}
 		ActionMessages errorMessages = new ActionMessages();
 		// validate date
-		String errorMessageKey = GoodValidator.validateDate(dateOfIssue);
+		String errorMessageKey = GoodValidator.validateDate(good
+				.getDateOfIssue());
 		processErrorMessageKey(errors, errorMessageKey);
 		// validate shop state of good
-		errorMessageKey = GoodValidator.validateShopState(price, notInStock);
+		errorMessageKey = GoodValidator.validateShopState(good.getPrice(),
+				good.isNotInStock());
 		processErrorMessageKey(errors, errorMessageKey);
 		if (!errorMessages.isEmpty()) {
 			errors.add(errorMessages);
@@ -84,52 +75,59 @@ public final class ShopForm extends ValidatorForm {
 		}
 	}
 
+	public Good getGood() {
+		return good;
+	}
+
 	public String getProducer() {
-		return producer;
+		return good.getProducer();
 	}
 
 	public void setProducer(String producer) {
-		this.producer = producer;
+		good.setProducer(producer);
 	}
 
 	public String getModel() {
-		return model;
+		return good.getModel();
 	}
 
 	public void setModel(String model) {
-		this.model = model;
+		good.setModel(model);
 	}
 
 	public String getDateOfIssue() {
-		return dateOfIssue;
+		return good.getDateOfIssue();
 	}
 
 	public void setDateOfIssue(String dateOfIssue) {
-		this.dateOfIssue = dateOfIssue;
+		good.setDateOfIssue(dateOfIssue);
 	}
 
 	public String getColor() {
-		return color;
+		return good.getColor();
 	}
 
 	public void setColor(String color) {
-		this.color = color;
+		good.setColor(color);
 	}
 
 	public String getPrice() {
-		return price;
+		return good.getPrice();
 	}
 
 	public void setPrice(String price) {
-		this.price = price;
+		good.setPrice(price);
 	}
 
 	public String getNotInStock() {
-		return notInStock;
+		System.out.println("getter"+good.isNotInStock());
+		return Boolean.toString(good.isNotInStock());
 	}
 
 	public void setNotInStock(String notInStock) {
-		this.notInStock = notInStock;
+		//good.setNotInStock(Boolean.valueOf(notInStock));
+		System.out.println("setter is working"+Boolean.valueOf(notInStock));
+		good.setNotInStock(Boolean.valueOf(notInStock));
 	}
 
 	public String getCategoryName() {
@@ -154,5 +152,21 @@ public final class ShopForm extends ValidatorForm {
 
 	public void setProductsJDOM(Document productsJDOM) {
 		this.productsJDOM = productsJDOM;
+	}
+	
+	public int getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
+	}
+
+	public int getSubcategoryId() {
+		return subcategoryId;
+	}
+
+	public void setSubcategoryId(int subcategoryId) {
+		this.subcategoryId = subcategoryId;
 	}
 }

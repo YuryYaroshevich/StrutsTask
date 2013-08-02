@@ -22,11 +22,10 @@
 	<bean:define id="subcategoryId" name="shopForm"
 		property="subcategoryId" />
 
-	<nested:iterate name="shopForm"
-		property="productsJDOM.rootElement.children[${categoryId}].children[${subcategoryId}].children"
-		id="good">
-		<nested:write property="child(price).text" />
-		<nested:form action="shop.do?method=updateGoods">
+	<nested:form action="shop.do?method=updateGoods">
+		<nested:iterate name="shopForm"
+			property="productsJDOM.rootElement.children[${categoryId}].children[${subcategoryId}].children"
+			id="good">
 			<table>
 				<tr>
 					<td>Producer:</td>
@@ -44,30 +43,29 @@
 					<td>Color:</td>
 					<td><nested:text name="good" property="children[3].text" /></td>
 				</tr>
-
-				<logic:present name="good" property="child(price)">
-					<tr>
+				<tr>
+					<logic:equal value="price" name="good" property="children[4].name">
 						<td>Price:</td>
 						<td><nested:text name="good" property="children[4].text" /></td>
-					</tr>
-				</logic:present>
-				<logic:present name="good" property="child(notInStock)">
-					<tr>
+					</logic:equal>
+					<logic:notEqual value="price" name="good"
+						property="children[4].name">
 						<td>Not in stock</td>
-					</tr>
-				</logic:present>
+					</logic:notEqual>
+				</tr>
 			</table>
-			<nested:submit>UPDATE GOODS</nested:submit>
-		</nested:form>
-		<br></br>
-	</nested:iterate>
-
+			<br></br>
+		</nested:iterate>
+		<nested:submit>UPDATE GOODS</nested:submit>
+	</nested:form>
+	<br></br>
+	
 	<html:form action="shop.do?method=addGood" method="POST">
 		<html:hidden property="categoryName" value="${categoryName}" />
 		<html:hidden property="subcategoryName" value="${subcategoryName}" />
 		<html:submit>ADD GOOD</html:submit>
 	</html:form>
-
+	<br></br>
 	<a href="shop.do?method=subcategories&categoryName=${categoryName}">Back</a>
 </body>
 </html>

@@ -5,7 +5,6 @@ import java.util.List;
 import org.jdom2.Document;
 import org.jdom2.Element;
 
-import com.epam.st.product.Product;
 
 public final class ProductsJDOMHandler {
 	private static String NAME_ATTR = "name";
@@ -41,17 +40,8 @@ public final class ProductsJDOMHandler {
 		}
 		return -1;
 	}
-	
-	public static Product processProductsJDOM(Document productsJDOM) {
-		
-		return null;
-	}
-	
-	
 
-	
-
-	public static int getGoodsNumbInCategory(String categName,
+	public static int countGoodsInCateg(String categName,
 			Document productsJDOM) {
 		int categId = getCategoryListIndex(categName, productsJDOM);
 		if (categId == -1) {
@@ -62,13 +52,13 @@ public final class ProductsJDOMHandler {
 				.get(categId);
 		List<Element> subcategories = correspondCateg.getChildren();
 		for (Element subcateg : subcategories) {
-			goodsNumber += getGoodsNumbInSubcateg(categId,
+			goodsNumber += countGoodsInSubcateg(categId,
 					subcateg.getAttributeValue(NAME_ATTR), productsJDOM);
 		}
 		return goodsNumber;
 	}
 
-	public static int getGoodsNumbInSubcateg(int categId, String subcategName,
+	public static int countGoodsInSubcateg(int categId, String subcategName,
 			Document productsJDOM) {
 		int subcategId = getSubcategoryListIndex(categId, subcategName,
 				productsJDOM);

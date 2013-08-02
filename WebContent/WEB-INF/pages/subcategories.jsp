@@ -2,6 +2,7 @@
 	pageEncoding="utf-8"%>
 <%@ taglib uri="/struts-bean.tld" prefix="bean"%>
 <%@ taglib uri="/struts-nested.tld" prefix="nested"%>
+<%@ taglib uri="/WEB-INF/myELFunction.tld" prefix="melf"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -22,7 +23,8 @@
 			<li><a
 				href="shop.do?method=goods&categoryName=${categoryName}
 									&subcategoryName=${subcategName}">
-					${subcategName}</a></li>
+					${subcategName} (${melf:countGoodsInSubcateg(shopForm.categoryId,
+					subcategName, shopForm.productsJDOM)})</a></li>
 		</nested:iterate>
 	</ul>
 

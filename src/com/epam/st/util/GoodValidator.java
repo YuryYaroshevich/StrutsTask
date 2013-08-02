@@ -37,15 +37,15 @@ public final class GoodValidator {
 
 	// Checks price and if it empty, checks notInStock to be true.
 	// If price is correct then notInStock should be false.
-	public static String validateShopState(String price, String notInStock) {
+	public static String validateShopState(String price, boolean notInStock) {
 		if (price.isEmpty()) {
 			// then notInStock should be true
-			if (notInStock == null) {
+			if (!notInStock) {
 				return NOT_IN_STOCK_TO_TRUE;
 			}
 		} else if (Pattern.matches(NUMBER_REGEXP, price)) {
 			// then notInStock should be false
-			if (notInStock != null) {
+			if (notInStock) {
 				return NOT_IN_STOCK_TO_FALSE;
 			}
 		} else {

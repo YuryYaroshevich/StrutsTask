@@ -2,6 +2,7 @@
 	pageEncoding="utf-8"%>
 <%@ taglib uri="/struts-bean.tld" prefix="bean"%>
 <%@ taglib uri="/struts-nested.tld" prefix="nested"%>
+<%@ taglib uri="/WEB-INF/myELFunction.tld" prefix="melf"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,8 +13,6 @@
 	<h2>Categories</h2>
 	<bean:define id="root" name="shopForm"
 		property="productsJDOM.rootElement" scope="session" />
-	<bean:define id="productsJDOMHandler"
-		type="com.epam.st.util.ProductsJDOMHandler" />
 
 	<ul>
 		<nested:iterate name="root" property="children" id="category">
@@ -21,7 +20,7 @@
 
 			<li><a
 				href="shop.do?method=subcategories&categoryName=${categoryName}">
-					${categoryName}(${productsJDOMHandler.goodsNumbInCateg(categoryName,
+					${categoryName} (${melf:countGoodsInCateg(categoryName,
 					shopForm.productsJDOM)})</a></li>
 		</nested:iterate>
 	</ul>
