@@ -9,7 +9,6 @@
 	<xsl:param name="dateOfIssue" />
 	<xsl:param name="color" />
 	<xsl:param name="price" />
-	<xsl:param name="notInStock" />
 	
 	<xsl:template name="saveGood" match="node()|@*">
 		<xsl:copy>
@@ -40,9 +39,9 @@
 							<xsl:value-of select="$price" />
 						</xsl:element>
 					</xsl:when>
-					<xsl:when test="$notInStock">
+					<xsl:otherwise>
 						<xsl:element name="pr:not-in-stock" />
-					</xsl:when>
+					</xsl:otherwise >
 				</xsl:choose>
 			</xsl:element>
 		</xsl:copy>

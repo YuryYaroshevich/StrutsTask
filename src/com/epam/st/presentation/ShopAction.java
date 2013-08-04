@@ -3,8 +3,13 @@ package com.epam.st.presentation;
 import static com.epam.st.stconstant.STConstant.PRODUCTS_XML;
 import static com.resource.PropertyGetter.getProperty;
 
+import java.io.StringWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.stream.StreamResult;
 
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -13,6 +18,7 @@ import org.apache.struts.action.ActionMessages;
 import org.apache.struts.actions.DispatchAction;
 import org.jdom2.Document;
 import org.jdom2.input.SAXBuilder;
+import org.jdom2.transform.JDOMSource;
 
 import com.epam.st.util.ProductsJDOMHandler;
 import com.epam.st.util.ProductsXMLWriter;
@@ -118,7 +124,28 @@ public final class ShopAction extends DispatchAction {
 	}
 
 	public ActionForward updateGoods(ActionMapping mapping, ActionForm form,
-			HttpServletRequest req, HttpServletResponse resp) {
+			HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		ShopForm shopForm = (ShopForm) form;
+		Document productsJDOM = shopForm.getProductsJDOM();
+		int categId = shopForm.getCategoryId();
+		int subcategId = shopForm.getSubcategoryId();
+
+		System.out.println(productsJDOM.getRootElement().getChildren().get(categId).getChildren()
+				.get(subcategId).getChildren().get(0).getChildren().get(4).getText());
+		/*
+		 * TransformerFactory transformerFactory = TransformerFactory
+		 * .newInstance(); Transformer transf =
+		 * transformerFactory.newTransformer(); JDOMSource source = new
+		 * JDOMSource(productsJDOM); StringWriter stringWriter = new
+		 * StringWriter(); StreamResult outputTarget = new
+		 * StreamResult(stringWriter); transf.transform(source, outputTarget);
+		 * System.out.println(stringWriter);
+		 */
+
+		// ProductsJDOMHandler
+		// .setCorrespondShopState(productsJDOM, categId, subcategId);
+		// ProductsXMLWriter.updateGoodsInXML(productsJDOM);
+		updateProductsJDOM(shopForm);
 		return mapping.findForward(GOODS_FORWARD);
 	}
 }

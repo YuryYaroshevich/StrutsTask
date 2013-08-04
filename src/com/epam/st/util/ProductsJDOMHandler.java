@@ -4,10 +4,18 @@ import java.util.List;
 
 import org.jdom2.Document;
 import org.jdom2.Element;
+import org.jdom2.Namespace;
 
+import static com.epam.st.stconstant.STConstant.*;
+import static com.resource.PropertyGetter.getProperty;
 
 public final class ProductsJDOMHandler {
-	private static String NAME_ATTR = "name";
+	private static final String NAME_ATTR = "name";
+
+	private static final String PRICE_ELEM = "price";
+	private static final String NOT_IN_STOCK_ELEM = "not-in-stock";
+
+	private static final String PREFIX = "pr";
 
 	private ProductsJDOMHandler() {
 	}
@@ -41,8 +49,7 @@ public final class ProductsJDOMHandler {
 		return -1;
 	}
 
-	public static int countGoodsInCateg(String categName,
-			Document productsJDOM) {
+	public static int countGoodsInCateg(String categName, Document productsJDOM) {
 		int categId = getCategoryListIndex(categName, productsJDOM);
 		if (categId == -1) {
 			return 0;
@@ -67,7 +74,36 @@ public final class ProductsJDOMHandler {
 		}
 		Element correspondCateg = productsJDOM.getRootElement().getChildren()
 				.get(categId);
-		Element correspondSubcateg = correspondCateg.getChildren().get(subcategId);
+		Element correspondSubcateg = correspondCateg.getChildren().get(
+				subcategId);
 		return correspondSubcateg.getChildren().size();
+	}
+
+	// Append not-in-stock element to the goods which has got empty price
+	// element
+	public static void setCorrespondShopState(Document productsJDOM,
+			int categId, int subcategId) {
+		Element priceElem = null;
+		Element notInStockElem = null;
+		Namespace namesp = Namespace.getNamespace(PREFIX,
+				getProperty(NAMESPACE_URI));
+		// fetch correspond category
+		Element category = productsJDOM.getRootElement().getChildren()
+				.get(categId);
+		// fetch correspond subcategory
+		Element subcategory = category.getChildren().get(subcategId);
+		List<Element> goods = subcategory.getChildren();
+		for (Element good : goods) {
+			priceElem = good.getChild(PRICE_ELEM, namesp);
+			if (priceElem == null) {
+				notInStockElem = good.getChild(NOT_IN_STOCK_ELEM, namesp);
+				if (!notInStockElem.getText().isEmpty()) {
+					notInStockElem.setName(PRICE_ELEM);
+				}
+			} else if (priceElem.getText().isEmpty()) {
+				good.removeChild(PRICE_ELEM, namesp);
+				good.addContent(notInStockElem);
+			}
+		}
 	}
 }

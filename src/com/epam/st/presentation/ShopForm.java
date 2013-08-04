@@ -46,7 +46,6 @@ public final class ShopForm extends ValidatorForm {
 		good.setModel(null);
 		good.setPrice(null);
 		good.setProducer(null);
-		good.setNotInStock(false);	
 	}
 
 	public ActionErrors validate(ActionMapping mapping, HttpServletRequest req) {
@@ -60,8 +59,7 @@ public final class ShopForm extends ValidatorForm {
 				.getDateOfIssue());
 		processErrorMessageKey(errors, errorMessageKey);
 		// validate shop state of good
-		errorMessageKey = GoodValidator.validateShopState(good.getPrice(),
-				good.isNotInStock());
+		errorMessageKey = GoodValidator.validatePrice(good.getPrice());
 		processErrorMessageKey(errors, errorMessageKey);
 		if (!errorMessages.isEmpty()) {
 			errors.add(errorMessages);
@@ -117,17 +115,6 @@ public final class ShopForm extends ValidatorForm {
 
 	public void setPrice(String price) {
 		good.setPrice(price);
-	}
-
-	public String getNotInStock() {
-		System.out.println("getter"+good.isNotInStock());
-		return Boolean.toString(good.isNotInStock());
-	}
-
-	public void setNotInStock(String notInStock) {
-		//good.setNotInStock(Boolean.valueOf(notInStock));
-		System.out.println("setter is working"+Boolean.valueOf(notInStock));
-		good.setNotInStock(Boolean.valueOf(notInStock));
 	}
 
 	public String getCategoryName() {

@@ -40,11 +40,6 @@
 				<td>Price:</td>
 				<td><html:text name="shopForm" property="price" /></td>
 			</tr>
-			<tr>
-				<td>Not in stock:</td>
-				<td><html:checkbox name="shopForm" property="notInStock"
-						value="true" /></td>
-			</tr>
 		</table>
 		<html:submit>ADD GOOD</html:submit>
 	</html:form>

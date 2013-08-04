@@ -25,7 +25,8 @@
 	<nested:form action="shop.do?method=updateGoods">
 		<nested:iterate name="shopForm"
 			property="productsJDOM.rootElement.children[${categoryId}].children[${subcategoryId}].children"
-			id="good">
+			id="good" indexId="goodId">
+
 			<table>
 				<tr>
 					<td>Producer:</td>
@@ -50,16 +51,20 @@
 					</logic:equal>
 					<logic:notEqual value="price" name="good"
 						property="children[4].name">
-						<td>Not in stock</td>
+						<td>Price:</td>
+						<td><nested:text name="good" property="children[4].text"
+								value="not in stock" /></td>
 					</logic:notEqual>
 				</tr>
 			</table>
+
+
 			<br></br>
 		</nested:iterate>
 		<nested:submit>UPDATE GOODS</nested:submit>
 	</nested:form>
 	<br></br>
-	
+
 	<html:form action="shop.do?method=addGood" method="POST">
 		<html:hidden property="categoryName" value="${categoryName}" />
 		<html:hidden property="subcategoryName" value="${subcategoryName}" />

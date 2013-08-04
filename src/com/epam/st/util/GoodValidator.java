@@ -1,8 +1,6 @@
 package com.epam.st.util;
 
 import static com.epam.st.stconstant.STConstant.EMPTY_DATE;
-import static com.epam.st.stconstant.STConstant.NOT_IN_STOCK_TO_FALSE;
-import static com.epam.st.stconstant.STConstant.NOT_IN_STOCK_TO_TRUE;
 import static com.epam.st.stconstant.STConstant.WRONG_DATE_FORMAT;
 import static com.epam.st.stconstant.STConstant.WRONG_DATE_RANGE;
 import static com.epam.st.stconstant.STConstant.WRONG_PRICE_FORMAT;
@@ -35,22 +33,12 @@ public final class GoodValidator {
 		return VALID;
 	}
 
-	// Checks price and if it empty, checks notInStock to be true.
-	// If price is correct then notInStock should be false.
-	public static String validateShopState(String price, boolean notInStock) {
-		if (price.isEmpty()) {
-			// then notInStock should be true
-			if (!notInStock) {
-				return NOT_IN_STOCK_TO_TRUE;
+	public static String validatePrice(String price) {
+		if (!price.isEmpty()) {
+			if (!Pattern.matches(NUMBER_REGEXP, price)) {
+				return WRONG_PRICE_FORMAT;
 			}
-		} else if (Pattern.matches(NUMBER_REGEXP, price)) {
-			// then notInStock should be false
-			if (notInStock) {
-				return NOT_IN_STOCK_TO_FALSE;
-			}
-		} else {
-			return WRONG_PRICE_FORMAT;
-		}
+		}		
 		return VALID;
 	}
 }

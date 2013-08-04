@@ -13,6 +13,9 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
+import org.jdom2.Document;
+import org.jdom2.transform.JDOMSource;
+
 import com.epam.st.product.Good;
 
 public final class ProductsXMLWriter {
@@ -27,7 +30,6 @@ public final class ProductsXMLWriter {
 	private static final String DATE_OF_ISSUE = "dateOfIssue";
 	private static final String COLOR = "color";
 	private static final String PRICE = "price";
-	private static final String NOT_IN_STOCK = "notInStock";
 
 	private ProductsXMLWriter() {
 	}
@@ -44,17 +46,25 @@ public final class ProductsXMLWriter {
 		transf.setParameter(MODEL, good.getModel());
 		transf.setParameter(DATE_OF_ISSUE, good.getDateOfIssue());
 		transf.setParameter(COLOR, good.getColor());
-		boolean notInStock = good.isNotInStock();
-		if (notInStock) {
-			transf.setParameter(NOT_IN_STOCK, notInStock);
-		} else {
-			transf.setParameter(PRICE, good.getPrice());
-		}
+		transf.setParameter(PRICE, good.getPrice());
 
 		StreamSource xmlSource = new StreamSource(getProperty(PRODUCTS_XML));
 		StringWriter stringWriter = new StringWriter();
 		StreamResult outputTarget = new StreamResult(stringWriter);
 		transf.transform(xmlSource, outputTarget);
+		FileWriter fileWriter = new FileWriter(getProperty(PRODUCTS_XML));
+		fileWriter.append(stringWriter.toString());
+		fileWriter.close();
+		stringWriter.close();
+	}
+
+	public static void updateGoodsInXML(Document productsJDOM) throws Exception {
+		Transformer transf = transformerFactory.newTransformer();
+		JDOMSource source = new JDOMSource(productsJDOM);
+		StringWriter stringWriter = new StringWriter();
+		StreamResult outputTarget = new StreamResult(stringWriter);
+		transf.transform(source, outputTarget);
+
 		FileWriter fileWriter = new FileWriter(getProperty(PRODUCTS_XML));
 		fileWriter.append(stringWriter.toString());
 		fileWriter.close();
