@@ -7,6 +7,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="js/cancel.js"></script>
 <title>Add good</title>
 </head>
 <body>
@@ -37,12 +39,12 @@
 				<td><html:text name="shopForm" property="color" /></td>
 			</tr>
 			<tr>
-				<td>Price:</td>
+				<td>Price(number or "not in stock"):</td>
 				<td><html:text name="shopForm" property="price" /></td>
 			</tr>
 		</table>
-		<html:submit>ADD GOOD</html:submit>
+		<html:submit>SAVE GOOD</html:submit>
+		<html:cancel styleId="cancel">CANCEL</html:cancel>
 	</html:form>
-
 </body>
 </html>

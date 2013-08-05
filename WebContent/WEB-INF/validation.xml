@@ -23,6 +23,16 @@
 			<field property="color" depends="required">
 				<msg name="required" key="empty.color" />
 			</field>
+
+			<field property="price" depends="required, mask">
+				<msg name="required" key="empty.price" />
+				<msg name="mask" key="wrong.price.format" />
+
+				<var>
+					<var-name>mask</var-name>
+					<var-value>\d+|not in stock</var-value>
+				</var>
+			</field>
 		</form>
 	</formset>
 </form-validation>

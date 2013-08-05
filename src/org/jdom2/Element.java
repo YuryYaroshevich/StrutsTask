@@ -685,9 +685,8 @@ public class Element extends Content implements Parent {
 	 *                              org.jdom2.Verifier#checkCharacterData})
 	 */
 	public void setText(final String text) {
-		System.out.println("work of setText in Element");
 		content.clear();
-		
+
 		if (text != null) {
 			addContent(new Text(text));
 		}

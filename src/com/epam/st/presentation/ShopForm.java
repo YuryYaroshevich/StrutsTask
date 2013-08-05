@@ -40,7 +40,7 @@ public final class ShopForm extends ValidatorForm {
 		good = new Good();
 	}
 	
-	public void resetGood() {
+	public void reset(ActionMapping mapping, HttpServletRequest req) {
 		good.setColor(null);
 		good.setDateOfIssue(null);
 		good.setModel(null);
@@ -57,9 +57,6 @@ public final class ShopForm extends ValidatorForm {
 		// validate date
 		String errorMessageKey = GoodValidator.validateDate(good
 				.getDateOfIssue());
-		processErrorMessageKey(errors, errorMessageKey);
-		// validate shop state of good
-		errorMessageKey = GoodValidator.validatePrice(good.getPrice());
 		processErrorMessageKey(errors, errorMessageKey);
 		if (!errorMessages.isEmpty()) {
 			errors.add(errorMessages);

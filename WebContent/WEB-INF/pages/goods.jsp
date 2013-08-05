@@ -23,44 +23,38 @@
 		property="subcategoryId" />
 
 	<nested:form action="shop.do?method=updateGoods">
-		<nested:iterate name="shopForm"
-			property="productsJDOM.rootElement.children[${categoryId}].children[${subcategoryId}].children"
-			id="good" indexId="goodId">
+		<table>
+			<tr>
+				<td>Producer</td>
+				<td>Model</td>
+				<td>Date of issue</td>
+				<td>Color</td>
+				<td>Price</td>
+			</tr>
+			<logic:iterate name="shopForm"
+				property="productsJDOM.rootElement.children[${categoryId}].children[${subcategoryId}].children"
+				id="good" indexId="goodId">
 
-			<table>
-				<tr>
-					<td>Producer:</td>
-					<td><nested:text name="good" property="children[0].text" /></td>
-				</tr>
-				<tr>
-					<td>Model:</td>
-					<td><nested:text name="good" property="children[1].text" /></td>
-				</tr>
-				<tr>
-					<td>Date of issue:</td>
-					<td><nested:text name="good" property="children[2].text" /></td>
-				</tr>
-				<tr>
-					<td>Color:</td>
-					<td><nested:text name="good" property="children[3].text" /></td>
-				</tr>
-				<tr>
-					<logic:equal value="price" name="good" property="children[4].name">
-						<td>Price:</td>
-						<td><nested:text name="good" property="children[4].text" /></td>
-					</logic:equal>
-					<logic:notEqual value="price" name="good"
-						property="children[4].name">
-						<td>Price:</td>
-						<td><nested:text name="good" property="children[4].text"
-								value="not in stock" /></td>
-					</logic:notEqual>
-				</tr>
-			</table>
-
-
-			<br></br>
-		</nested:iterate>
+				<nested:nest
+					property="productsJDOM.rootElement.children[${categoryId}].children[${subcategoryId}].children[${goodId}]">
+					<tr>
+						<td><nested:text property="children[0].text" /></td>
+						<td><nested:text property="children[1].text" /></td>
+						<td><nested:text property="children[2].text" /></td>
+						<td><nested:text property="children[3].text" /></td>
+						<logic:equal name="good" value="price" property="children[4].name">
+							<td><nested:text property="children[4].text" /></td>
+						</logic:equal>
+						<logic:notEqual name="good" value="price"
+							property="children[4].name">
+							<td><nested:text property="children[4].text"
+									value="not in stock" /></td>
+						</logic:notEqual>
+					</tr>
+				</nested:nest>
+				<br></br>
+			</logic:iterate>
+		</table>
 		<nested:submit>UPDATE GOODS</nested:submit>
 	</nested:form>
 	<br></br>
@@ -71,6 +65,8 @@
 		<html:submit>ADD GOOD</html:submit>
 	</html:form>
 	<br></br>
-	<a href="shop.do?method=subcategories&categoryName=${categoryName}">Back</a>
+	<html:form action="shop.do?method=categories">
+		<html:submit>BACK</html:submit>
+	</html:form>
 </body>
 </html>
