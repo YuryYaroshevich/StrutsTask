@@ -75,6 +75,7 @@ public final class ShopAction extends DispatchAction {
 
 	public ActionForward addGood(ActionMapping mapping, ActionForm form,
 			HttpServletRequest req, HttpServletResponse resp) {
+		saveToken(req);
 		return mapping.findForward(ADD_GOOD_FORWARD);
 	}
 

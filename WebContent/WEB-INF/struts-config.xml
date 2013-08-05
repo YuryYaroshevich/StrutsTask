@@ -19,7 +19,7 @@
 		</action>
 	</action-mappings>
 
-	<message-resources parameter="com.resource.appresource" />
+	<message-resources parameter="com.epam.st.resource.appresource" />
 
 	<plug-in className="org.apache.struts.validator.ValidatorPlugIn">
 		<set-property property="pathnames"
