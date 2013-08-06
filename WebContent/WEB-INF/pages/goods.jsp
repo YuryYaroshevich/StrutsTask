@@ -8,6 +8,21 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="css/error.css"
+	media="screen" />
+<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="js/validation.js"></script>
+<script type="text/javascript">
+	var emptyProducerMsg = '<bean:message key="empty.producer" />';
+	var emptyModelMsg = '<bean:message key="empty.model" />';
+	var wrongModelFormatMsg = '<bean:message key="wrong.model.format" />';
+	var emptyDateMsg = '<bean:message key="empty.date" />';
+	var wrongDateFormatMsg = '<bean:message key="wrong.date.format" />';
+	var wrongDateRangeMsg = '<bean:message key="wrong.date.range" />';
+	var emptyColorMsg = '<bean:message key="empty.color" />';
+	var emptyPriceMsg = '<bean:message key="empty.price" />';
+	var wrongPriceFormatMsg = '<bean:message key="wrong.price.format" />';
+</script>
 <nested:define id="subcategoryName" name="shopForm"
 	property="subcategoryName" />
 <title>Goods of ${subcategoryName}</title>
@@ -17,12 +32,11 @@
 
 	<nested:define id="categoryName" name="shopForm"
 		property="categoryName" />
-
 	<bean:define id="categoryId" name="shopForm" property="categoryId" />
 	<bean:define id="subcategoryId" name="shopForm"
 		property="subcategoryId" />
 
-	<nested:form action="shop.do?method=updateGoods">
+	<nested:form action="shop.do?method=updateGoods" styleId="update-goods">
 		<table>
 			<tr>
 				<td>Producer</td>
@@ -37,22 +51,26 @@
 
 				<nested:nest
 					property="productsJDOM.rootElement.children[${categoryId}].children[${subcategoryId}].children[${goodId}]">
-					<tr>
-						<td><nested:text property="children[0].text" /></td>
-						<td><nested:text property="children[1].text" /></td>
-						<td><nested:text property="children[2].text" /></td>
-						<td><nested:text property="children[3].text" /></td>
+					<tr class="good-parameters">
+						<td><nested:text styleClass="producer"
+								property="children[0].text" /></td>
+						<td><nested:text styleClass="model"
+								property="children[1].text" /></td>
+						<td><nested:text styleClass="date-of-issue"
+								property="children[2].text" /></td>
+						<td><nested:text styleClass="color"
+								property="children[3].text" /></td>
 						<logic:equal name="good" value="price" property="children[4].name">
-							<td><nested:text property="children[4].text" /></td>
+							<td><nested:text styleClass="price"
+									property="children[4].text" /></td>
 						</logic:equal>
 						<logic:notEqual name="good" value="price"
 							property="children[4].name">
-							<td><nested:text property="children[4].text"
-									value="not in stock" /></td>
+							<td><nested:text styleClass="price"
+									property="children[4].text" value="not in stock" /></td>
 						</logic:notEqual>
 					</tr>
 				</nested:nest>
-				<br></br>
 			</logic:iterate>
 		</table>
 		<nested:submit>UPDATE GOODS</nested:submit>
@@ -65,7 +83,8 @@
 		<html:submit>ADD GOOD</html:submit>
 	</html:form>
 	<br></br>
-	<html:form action="shop.do?method=categories">
+	<html:form
+		action="shop.do?method=subcategories&categoryName=${categoryName}">
 		<html:submit>BACK</html:submit>
 	</html:form>
 </body>
