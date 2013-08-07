@@ -16,7 +16,7 @@
 
 				<var>
 					<var-name>mask</var-name>
-					<var-value>[a-zA-Z]{2}\d{3}</var-value>
+					<var-value>^[a-zA-Z]{2}\d{3}$</var-value>
 				</var>
 			</field>
 
@@ -30,7 +30,7 @@
 
 				<var>
 					<var-name>mask</var-name>
-					<var-value>\d+|not in stock</var-value>
+					<var-value>^\d+$|^not in stock$</var-value>
 				</var>
 			</field>
 		</form>

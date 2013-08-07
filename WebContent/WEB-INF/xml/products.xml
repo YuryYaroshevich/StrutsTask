@@ -6,7 +6,7 @@
 				<pr:model>ik565</pr:model>
 				<pr:date-of-issue>04-11-2011</pr:date-of-issue>
 				<pr:color>yellow</pr:color>
-				<pr:not-in-stock>not in stock</pr:not-in-stock>
+				<pr:not-in-stock/>
 			</pr:good>
 			<pr:good>
 				<pr:producer>RideThem</pr:producer>
@@ -18,7 +18,7 @@
 		</pr:subcategory>
 		<pr:subcategory name="cargoTaxi">
 			<pr:good>
-				<pr:producer/>
+				<pr:producer>dgdfg</pr:producer>
 				<pr:model>tY121</pr:model>
 				<pr:date-of-issue>21-05-2013</pr:date-of-issue>
 				<pr:color>blue</pr:color>
@@ -29,18 +29,18 @@
 	<pr:category name="ice-cream">
 		<pr:subcategory name="fruit ice-cream">
 			<pr:good>
-				<pr:producer>Cold fruit</pr:producer>
+				<pr:producer>ssg</pr:producer>
 				<pr:model>IC321</pr:model>
-				<pr:date-of-issue>21-05-2013</pr:date-of-issue>
-				<pr:color>blue</pr:color>
-				<pr:price>34534</pr:price>
+				<pr:date-of-issue>21-12-2001</pr:date-of-issue>
+				<pr:color>dfg</pr:color>
+				<pr:price>353</pr:price>
 			</pr:good>
 			<pr:good>
-				<pr:producer>apple</pr:producer>
-				<pr:model>fd344</pr:model>
+				<pr:producer>fd343</pr:producer>
+				<pr:model>fd343</pr:model>
 				<pr:date-of-issue>12-12-2011</pr:date-of-issue>
-				<pr:color>sdfsd</pr:color>
-				<pr:price>124234</pr:price>
+				<pr:color>sgsgsdg</pr:color>
+				<pr:not-in-stock/>
 			</pr:good>
 		</pr:subcategory>
 	</pr:category>

@@ -1,136 +1,127 @@
 $(document).ready(function() {
 	$("form#update-goods").submit(function() {
-		alert("s");
-		var $tableRows = $(this).find('tr.good-parameters');
-		var validationResult = true;
-		for (var i = 0; i < $tableRows.length; i++) {
-			validationResult = validationResult && isGoodValid($tableRows[i]);
+		var tableRows = $(this).find('tr.good-parameters');
+		var validationResult = 0;
+		for (var i = 0; i < tableRows.length; i++) {
+			validationResult += isGoodValid(tableRows[i]);
 		}
-		return validationResult;
+		return validationResult == 0;
 	});
 });
 
-function isGoodValid($tableRow) {
-	//alert($tableRow.find('input.producer'));
-	var $producerInput = $tableRow.find('input.producer');
-	alert($producerInput);
-	if (!isProducerValid($producerInput)) {
-		return false;
-	}
-	var $modelInput = $tableRow.find('input.model');
-	if (!isModelValid($modelInput)) {
-		return false;
-	}
-	var $dateOfIssueInput = $tableRow.find('input.date-of-issue');
-	if (!isDateOfIssueValid($dateOfIssueInput)) {
-		return false;
-	}
-	var $colorInput = $tableRow.find('input.color');
-	if (!isColorValid($colorInput)) {
-		return false;
-	}
-	var $priceInput = $tableRow.find('input.price');
-	if (!isPriceValid($priceInput)) {
-		return false;
-	}
-	return true;
-}
+function isGoodValid(tableRow) {
+	var isValid = 0;
+	var errorMsgs = [];
+	var goodId = $(tableRow).attr('id');
 
-function isProducerValid($producerInput) {
-	alert(emptyProducerMsg);
-	return !isInputEmpty($producerInput, emptyProducerMsg, 'empty-producer');
-}
-
-function isModelValid($modelInput) {
-	if (isInputEmpty($modelInput, emptyModelMsg, 'empty-model')) {
-		return false;
-	}
-
-	// validate model format
-	var errorMsgClass = 'wrong-model-format';
-	var modelFormatRegexp = /[a-zA-Z]{2}\d{3}/;
-	if (isInputFormatWrong($modelInput, 
-			modelFormatRegexp, wrongModelFormatMsg, errorMsgClass)) {
-		return false;
+	errorMsgs.push(producerValidation($(tableRow).find('input.producer')));
+	errorMsgs.push(modelValidation($(tableRow).find('input.model')));
+	errorMsgs.push(dateOfIssueValidation($(tableRow)
+			.find('input.date-of-issue')));
+	errorMsgs.push(colorValidation($(tableRow).find('input.color')));
+	errorMsgs.push(priceValidation($(tableRow).find('input.price')));
+	
+	$('#error-row-' + goodId).remove();
+	var $trError = $('<tr class="error" id="error-row-' + goodId
+			+ '"><td></td><td></td><td></td><td></td><td></td></tr>');
+	var tds = $trError.children();
+	for (var i = 0; i < errorMsgs.length; i++) {
+		if (errorMsgs[i] != '') {
+			$(tds[i]).text(errorMsgs[i]);
+			isValid = 1;
+		}
 	}
 	
-	return true;
+	if (isValid == 1) {
+		$trError.insertAfter(tableRow);
+	} 
+	return isValid;
 }
 
-function isDateOfIssueValid($dateOfIssueInput) {
-	if (isInputEmpty($dateOfIssueInput, emptyDateMsg, 'empty-date')) {
-		return false;
+function producerValidation($producerInput) {
+	if (isInputEmpty($producerInput)) {
+		$producerInput.css('border','1px solid red');
+		return emptyProducerMsg;
 	}
+	$producerInput.css('border','1px solid #C0C0C0');
+	return '';
+}
+
+function modelValidation($modelInput) {
+	if (isInputEmpty($modelInput)) {
+		$modelInput.css('border','1px solid red');
+		return emptyModelMsg;
+	}
+	$modelInput.css('border','1px solid #C0C0C0');
+	
+	// validate model format
+	var modelFormatRegexp = /^[a-zA-Z]{2}\d{3}$/;
+	if (isInputFormatWrong($modelInput, modelFormatRegexp)) {
+		$modelInput.css('border','1px solid red');
+		return wrongModelFormatMsg;
+	}
+	$modelInput.css('border','1px solid #C0C0C0');
+	return '';
+}
+
+function dateOfIssueValidation($dateOfIssueInput) {
+	if (isInputEmpty($dateOfIssueInput)) {
+		$dateOfIssueInput.css('border','1px solid red');
+		return emptyDateMsg;
+	}
+	$dateOfIssueInput.css('border','1px solid #C0C0C0');
 	
 	// validate date format
-	var errorMsgClass = 'wrong-date-format';
-	var dateFormatRegexp = /(0[1-9]|1\\d|2\\d|3[01])-(0[1-9]|1[0-2])-(\\d{4})/;
-	if (isInputFormatWrong($dateOfIssueInput, 
-			dateFormatRegexp, wrongDateFormatMsg, errorMsgClass)) {
-		return false;
+	var dateFormatRegexp = /^(0[1-9]|1\d|2\d|3[01])-(0[1-9]|1[0-2])-(\d{4})$/;
+	if (isInputFormatWrong($dateOfIssueInput, dateFormatRegexp)) {
+		$dateOfIssueInput.css('border','1px solid red');
+		return wrongDateFormatMsg;
 	}
-	
+	$dateOfIssueInput.css('border','1px solid #C0C0C0');
+
 	// validate date range
-	errorMsgClass = 'wrong-date-range';
-	var dateRangeRegexp = /(0[1-9]|1\\d|2\\d|3[01])-(0[1-9]|1[0-2])-(19\\d{2}|2\\d{3})/;
-	if (isInputFormatWrong($dateOfIssueInput, 
-			dateRangeRegexp, wrongDateRangeMsg, errorMsgClass)) {
-		return false;
+	var dateRangeRegexp = /^(0[1-9]|1\d|2\d|3[01])-(0[1-9]|1[0-2])-(19\d{2}|2\d{3})$/;
+	if (isInputFormatWrong($dateOfIssueInput, dateRangeRegexp)) {
+		$dateOfIssueInput.css('border','1px solid red');
+		return wrongDateRangeMsg;
 	}
+	$dateOfIssueInput.css('border','1px solid #C0C0C0');
 	
-	return true;
+	return '';
 }
 
-function isColorValid($colorInput) {
-	return !isInputEmpty($colorInput, emptyColorMsg, 'empty-color');
-}
-
-function isPriceValid($priceInput) {
-	alert("price validation");
-	if (isInputEmpty($priceInput, emptyPriceMsg, 'empty-price')) {
-		return false;
+function colorValidation($colorInput) {
+	if (isInputEmpty($colorInput)) {
+		$colorInput.css('border','1px solid red');
+		return emptyColorMsg;
 	}
+	$colorInput.css('border','1px solid #C0C0C0');
+	return '';
+}
+
+function priceValidation($priceInput) {
+	if (isInputEmpty($priceInput)) {
+		$priceInput.css('border','1px solid red');
+		return emptyPriceMsg;
+	}
+	$priceInput.css('border','1px solid #C0C0C0');
 	
-	//validate price format
-	errorMsgClass = 'wrong-price-format';
-	var priceFormatRegexp = /\d+|not in stock/;
-	if (isInputFormatWrong($priceInput, 
-			priceFormatRegexp, wrongPriceFormatMsg, errorMsgClass)) {
-		return false;
+	// validate price format
+	var priceFormatRegexp = /^\d+$|^not in stock$/;
+	if (isInputFormatWrong($priceInput, priceFormatRegexp)) {
+		$priceInput.css('border','1px solid red');
+		return wrongPriceFormatMsg;
 	}
+	$priceInput.css('border','1px solid #C0C0C0');
 	
-	return true;
+	return '';
 }
 
-function isInputEmpty($input, msg, errorMsgClass) {
-	var $tableRow = $input.parent().parent();
-	if ($input.val() == '') {
-		if ($tableRow.find('.'+errorMsgClass).length == 0) {
-			$msgTD = prepareMsgElem(msg, errorMsgClass);
-			$msgTD.appendTo($tableRow);
-		}
-		return true;
-	} else {
-		$tableRow.find('.'+errorMsgClass).remove();
-	}
-	return false;
+function isInputEmpty($input) {
+	return $input.val() == '';
 }
 
-function isInputFormatWrong($input, regexp, msg, errorMsgClass) {
-	var $tableRow = $input.parent().parent();
-	if (!regexp.test($input.val())) {
-		if ($tableRow.find('.'+errorMsgClass).length == 0) {
-			$msgTD = prepareMsgElem(msg, errorMsgClass);
-			$msgTD.appendTo($tableRow);
-		}
-		return true;
-	} else {
-		$tableRow.find('.'+errorMsgClass).remove();
-	}
-	return false;
-}
-
-function prepareMsgElem(msg, msgClass) {
-	return $('<td class="' + msgClass + ' error">'+ msg +'</td>');
+function isInputFormatWrong($input, regexp) {
+	return !regexp.test($input.val());
 }
 

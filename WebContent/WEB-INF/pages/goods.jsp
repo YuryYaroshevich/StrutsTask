@@ -51,7 +51,7 @@
 
 				<nested:nest
 					property="productsJDOM.rootElement.children[${categoryId}].children[${subcategoryId}].children[${goodId}]">
-					<tr class="good-parameters">
+					<tr id="${goodId}" class="good-parameters">
 						<td><nested:text styleClass="producer"
 								property="children[0].text" /></td>
 						<td><nested:text styleClass="model"

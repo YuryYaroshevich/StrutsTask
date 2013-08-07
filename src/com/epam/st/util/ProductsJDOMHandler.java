@@ -93,7 +93,9 @@ public final class ProductsJDOMHandler {
 				notInStockElem = good.getChild(NOT_IN_STOCK_ELEM, namesp);
 				// if user entered price, then not-in-stock element becomes
 				// price element
-				if (!NOT_IN_STOCK_VALUE.equals(notInStockElem.getText())) {
+				if (NOT_IN_STOCK_VALUE.equals(notInStockElem.getText())) {
+					notInStockElem.removeContent();
+				} else {
 					notInStockElem.setName(PRICE_ELEM);
 				}
 			} else if (NOT_IN_STOCK_VALUE.equals(priceElem.getText())) {
@@ -101,6 +103,9 @@ public final class ProductsJDOMHandler {
 				// element becomes not-in-stock element
 				priceElem.removeContent();
 				priceElem.setName(NOT_IN_STOCK_ELEM);
+			} else {
+				notInStockElem = good.getChild(NOT_IN_STOCK_ELEM, namesp);
+				
 			}
 		}
 	}
