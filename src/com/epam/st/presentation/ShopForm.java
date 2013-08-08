@@ -10,7 +10,7 @@ import org.apache.struts.action.ActionMessages;
 import org.apache.struts.validator.ValidatorForm;
 import org.jdom2.Document;
 
-import com.epam.st.product.Good;
+import com.epam.st.model.Good;
 import com.epam.st.util.GoodValidator;
 
 public final class ShopForm extends ValidatorForm {
@@ -26,13 +26,6 @@ public final class ShopForm extends ValidatorForm {
 	// ids
 	private int categoryId;
 	private int subcategoryId;
-
-	// good properties
-	/*
-	 * private String producer; private String model; private String
-	 * dateOfIssue; private String color; private String price; private String
-	 * notInStock;
-	 */
 
 	private Good good;
 

@@ -2,17 +2,17 @@
 	<pr:category name="car">
 		<pr:subcategory name="taxi">
 			<pr:good>
-				<pr:producer>BestTaxi</pr:producer>
+				<pr:producer>dgggdfd</pr:producer>
 				<pr:model>ik565</pr:model>
-				<pr:date-of-issue>04-11-2011</pr:date-of-issue>
+				<pr:date-of-issue>04-11-2012</pr:date-of-issue>
 				<pr:color>yellow</pr:color>
 				<pr:not-in-stock/>
 			</pr:good>
 			<pr:good>
-				<pr:producer>RideThem</pr:producer>
+				<pr:producer>reter</pr:producer>
 				<pr:model>Yu545</pr:model>
 				<pr:date-of-issue>04-11-2011</pr:date-of-issue>
-				<pr:color>orange</pr:color>
+				<pr:color>sfsdgs</pr:color>
 				<pr:price>345</pr:price>
 			</pr:good>
 		</pr:subcategory>
@@ -22,7 +22,7 @@
 				<pr:model>tY121</pr:model>
 				<pr:date-of-issue>21-05-2013</pr:date-of-issue>
 				<pr:color>blue</pr:color>
-				<pr:price>234</pr:price>
+				<pr:price>1231124</pr:price>
 			</pr:good>
 		</pr:subcategory>
 	</pr:category>

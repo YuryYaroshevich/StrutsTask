@@ -10,6 +10,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="css/error.css"
 	media="screen" />
+<link rel="stylesheet" type="text/css" href="css/goods.css"
+	media="screen" />
 <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="js/validation.js"></script>
 <script type="text/javascript">
@@ -36,56 +38,63 @@
 	<bean:define id="subcategoryId" name="shopForm"
 		property="subcategoryId" />
 
-	<nested:form action="shop.do?method=updateGoods" styleId="update-goods">
-		<table>
-			<tr>
-				<td>Producer</td>
-				<td>Model</td>
-				<td>Date of issue</td>
-				<td>Color</td>
-				<td>Price</td>
-			</tr>
-			<logic:iterate name="shopForm"
-				property="productsJDOM.rootElement.children[${categoryId}].children[${subcategoryId}].children"
-				id="good" indexId="goodId">
+	<div id="content">
+		<nested:form action="shop.do?method=updateGoods"
+			styleId="update-goods">
+			<table>
+				<tr>
+					<td>Producer</td>
+					<td>Model</td>
+					<td>Date of issue</td>
+					<td>Color</td>
+					<td>Price</td>
+				</tr>
+				<logic:iterate name="shopForm"
+					property="productsJDOM.rootElement.children[${categoryId}].children[${subcategoryId}].children"
+					id="good" indexId="goodId">
 
-				<nested:nest
-					property="productsJDOM.rootElement.children[${categoryId}].children[${subcategoryId}].children[${goodId}]">
-					<tr id="${goodId}" class="good-parameters">
-						<td><nested:text styleClass="producer"
-								property="children[0].text" /></td>
-						<td><nested:text styleClass="model"
-								property="children[1].text" /></td>
-						<td><nested:text styleClass="date-of-issue"
-								property="children[2].text" /></td>
-						<td><nested:text styleClass="color"
-								property="children[3].text" /></td>
-						<logic:equal name="good" value="price" property="children[4].name">
-							<td><nested:text styleClass="price"
-									property="children[4].text" /></td>
-						</logic:equal>
-						<logic:notEqual name="good" value="price"
-							property="children[4].name">
-							<td><nested:text styleClass="price"
-									property="children[4].text" value="not in stock" /></td>
-						</logic:notEqual>
-					</tr>
-				</nested:nest>
-			</logic:iterate>
-		</table>
-		<nested:submit>UPDATE GOODS</nested:submit>
-	</nested:form>
-	<br></br>
+					<nested:nest
+						property="productsJDOM.rootElement.children[${categoryId}].children[${subcategoryId}].children[${goodId}]">
+						<tr id="${goodId}" class="good-parameters">
+							<td><nested:text size="20" styleClass="producer"
+									property="children[0].text" /></td>
+							<td><nested:text size="20" styleClass="model"
+									property="children[1].text" /></td>
+							<td><nested:text size="20" styleClass="date-of-issue"
+									property="children[2].text" /></td>
+							<td><nested:text size="20" styleClass="color"
+									property="children[3].text" /></td>
+							<logic:equal name="good" value="price"
+								property="children[4].name">
+								<td><nested:text size="20" styleClass="price"
+										property="children[4].text" /></td>
+							</logic:equal>
+							<logic:notEqual name="good" value="price"
+								property="children[4].name">
+								<td><nested:text size="20" styleClass="price"
+										property="children[4].text" value="not in stock" /></td>
+							</logic:notEqual>
+						</tr>
+					</nested:nest>
+				</logic:iterate>
+			</table>
+			<nested:submit styleId="update-button">UPDATE GOODS</nested:submit>
+		</nested:form>
 
-	<html:form action="shop.do?method=addGood" method="POST">
-		<html:hidden property="categoryName" value="${categoryName}" />
-		<html:hidden property="subcategoryName" value="${subcategoryName}" />
-		<html:submit>ADD GOOD</html:submit>
-	</html:form>
-	<br></br>
-	<html:form
-		action="shop.do?method=subcategories&categoryName=${categoryName}">
-		<html:submit>BACK</html:submit>
-	</html:form>
+		<div id="control-buttons">
+			<html:form action="shop.do?method=addGood" method="POST"
+				styleId="add-button">
+				<html:hidden property="categoryName" value="${categoryName}" />
+				<html:hidden property="subcategoryName" value="${subcategoryName}" />
+				<html:submit>ADD GOOD</html:submit>
+			</html:form>
+			<html:form styleId="back-button"
+				action="shop.do?method=subcategories&categoryName=${categoryName}">
+				<html:submit>BACK</html:submit>
+			</html:form>
+		</div>
+	</div>
+
+
 </body>
 </html>

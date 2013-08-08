@@ -1,4 +1,4 @@
-package com.epam.st.product;
+package com.epam.st.model;
 
 import java.io.Serializable;
 

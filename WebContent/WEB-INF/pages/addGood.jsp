@@ -7,6 +7,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="css/addGoodForm.css"
+	media="screen" />
+<link rel="stylesheet" type="text/css" href="css/error.css"
+	media="screen" />
 <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="js/cancel.js"></script>
 <title>Add good</title>
@@ -43,8 +47,10 @@
 				<td><html:text name="shopForm" property="price" /></td>
 			</tr>
 		</table>
-		<html:submit>SAVE GOOD</html:submit>
-		<html:cancel styleId="cancel">CANCEL</html:cancel>
+		<div id="control-buttons">
+			<html:submit styleId="save">SAVE GOOD</html:submit>
+			<html:cancel styleId="cancel">CANCEL</html:cancel>
+		</div>
 	</html:form>
 </body>
 </html>

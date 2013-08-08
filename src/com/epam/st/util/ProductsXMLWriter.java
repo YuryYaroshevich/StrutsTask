@@ -19,7 +19,7 @@ import javax.xml.transform.stream.StreamSource;
 import org.jdom2.Document;
 import org.jdom2.transform.JDOMSource;
 
-import com.epam.st.product.Good;
+import com.epam.st.model.Good;
 
 public final class ProductsXMLWriter {
 	private static final TransformerFactory transformerFactory = TransformerFactory
