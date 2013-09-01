@@ -8,13 +8,6 @@
 				<pr:color>yellow</pr:color>
 				<pr:not-in-stock/>
 			</pr:good>
-			<pr:good>
-				<pr:producer>reter</pr:producer>
-				<pr:model>Yu545</pr:model>
-				<pr:date-of-issue>04-11-2011</pr:date-of-issue>
-				<pr:color>sfsdgs</pr:color>
-				<pr:price>345</pr:price>
-			</pr:good>
 		</pr:subcategory>
 		<pr:subcategory name="cargoTaxi">
 			<pr:good>
@@ -29,19 +22,12 @@
 	<pr:category name="ice-cream">
 		<pr:subcategory name="fruit ice-cream">
 			<pr:good>
-				<pr:producer>ssg</pr:producer>
-				<pr:model>IC321</pr:model>
-				<pr:date-of-issue>21-12-2001</pr:date-of-issue>
-				<pr:color>dfg</pr:color>
-				<pr:price>353</pr:price>
-			</pr:good>
-			<pr:good>
-				<pr:producer>fd343</pr:producer>
-				<pr:model>fd343</pr:model>
+				<pr:producer>qqq</pr:producer>
+				<pr:model>qq232</pr:model>
 				<pr:date-of-issue>12-12-2011</pr:date-of-issue>
-				<pr:color>sgsgsdg</pr:color>
+				<pr:color>sfsdf</pr:color>
 				<pr:not-in-stock/>
 			</pr:good>
-		</pr:subcategory>
+		<pr:good><pr:producer>dfh</pr:producer><pr:model>fg343</pr:model><pr:date-of-issue>12-12-2011</pr:date-of-issue><pr:color>sfsdf</pr:color><pr:price>2423</pr:price></pr:good></pr:subcategory>
 	</pr:category>
 </pr:products>

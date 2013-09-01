@@ -16,6 +16,7 @@
 			<forward name="subcategories" path="/WEB-INF/pages/subcategories.jsp" />
 			<forward name="goods" path="/WEB-INF/pages/goods.jsp" />
 			<forward name="addGood" path="/WEB-INF/pages/addGood.jsp" />
+			<forward name="validation" path="/WEB-INF/xslt/addGoodForm.xslt" />
 		</action>
 	</action-mappings>
 

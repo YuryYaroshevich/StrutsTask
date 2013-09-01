@@ -2,16 +2,11 @@ package com.epam.st.presentation;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.struts.Globals;
-import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionMessage;
-import org.apache.struts.action.ActionMessages;
 import org.apache.struts.validator.ValidatorForm;
 import org.jdom2.Document;
 
 import com.epam.st.model.Good;
-import com.epam.st.util.GoodValidator;
 
 public final class ShopForm extends ValidatorForm {
 	private static final long serialVersionUID = 421564645392100602L;
@@ -39,28 +34,6 @@ public final class ShopForm extends ValidatorForm {
 		good.setModel(null);
 		good.setPrice(null);
 		good.setProducer(null);
-	}
-
-	public ActionErrors validate(ActionMapping mapping, HttpServletRequest req) {
-		ActionErrors errors = super.validate(mapping, req);
-		if (errors == null) {
-			errors = new ActionErrors();
-		}
-		ActionMessages errorMessages = new ActionMessages();
-		// validate date
-		String errorMessageKey = GoodValidator.validateDate(good
-				.getDateOfIssue());
-		processErrorMessageKey(errors, errorMessageKey);
-		if (!errorMessages.isEmpty()) {
-			errors.add(errorMessages);
-		}
-		return errors;
-	}
-
-	private static void processErrorMessageKey(ActionMessages errors, String key) {
-		if (!GoodValidator.VALID.equals(key)) {
-			errors.add(Globals.ERROR_KEY, new ActionMessage(key));
-		}
 	}
 
 	public Good getGood() {

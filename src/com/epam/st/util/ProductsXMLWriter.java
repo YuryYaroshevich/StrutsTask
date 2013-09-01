@@ -22,9 +22,6 @@ import org.jdom2.transform.JDOMSource;
 import com.epam.st.model.Good;
 
 public final class ProductsXMLWriter {
-	private static final TransformerFactory transformerFactory = TransformerFactory
-			.newInstance();
-
 	// parameter names for setting values in transformer
 	private static final String PRODUCER = "producer";
 	private static final String MODEL = "model";
@@ -37,11 +34,8 @@ public final class ProductsXMLWriter {
 
 	public static void writeGoodToXML(Good good, String categName,
 			String subcategName) throws Exception {
-
-		Templates saveGoodTempl = transformerFactory
-				.newTemplates(new StreamSource(getProperty(SAVE_GOOD_XSLT)));
-
-		Transformer transf = saveGoodTempl.newTransformer();
+		Transformer transf = TemplatesCache
+				.getCorrespondTransf(getProperty(SAVE_GOOD_XSLT));
 		transf.setParameter(CATEGORY_NAME, categName);
 		transf.setParameter(SUBCATEGORY_NAME, subcategName);
 		transf.setParameter(PRODUCER, good.getProducer());
@@ -49,15 +43,15 @@ public final class ProductsXMLWriter {
 		transf.setParameter(DATE_OF_ISSUE, good.getDateOfIssue());
 		transf.setParameter(COLOR, good.getColor());
 		transf.setParameter(PRICE, good.getPrice());
-		
+
 		StreamSource source = new StreamSource(getProperty(PRODUCTS_XML));
 		write(transf, source);
 	}
 
 	public static void updateGoodsInXML(Document productsJDOM) throws Exception {
-		Transformer transf = transformerFactory.newTransformer();
+		/*Transformer transf = transformerFactory.newTransformer();
 		JDOMSource source = new JDOMSource(productsJDOM);
-		write(transf, source);
+		write(transf, source);*/
 	}
 
 	private static void write(Transformer transf, Source source)
@@ -72,13 +66,13 @@ public final class ProductsXMLWriter {
 			fileWriter = new FileWriter(getProperty(PRODUCTS_XML));
 			fileWriter.append(stringWriter.toString());
 		} finally {
+			Synchronizer.getWriteLock().unlock();
 			if (fileWriter != null) {
 				fileWriter.close();
 			}
 			if (stringWriter != null) {
 				stringWriter.close();
 			}
-			Synchronizer.getWriteLock().unlock();
 		}
 	}
 }

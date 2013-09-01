@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <xsl:stylesheet version="1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:pr="http://www.epam.com/products">
-	
+
 	<xsl:param name="categoryName" />
 	<xsl:param name="subcategoryName" />
 	<xsl:param name="producer" />
@@ -9,7 +9,7 @@
 	<xsl:param name="dateOfIssue" />
 	<xsl:param name="color" />
 	<xsl:param name="price" />
-	
+
 	<xsl:template name="saveGood" match="node()|@*">
 		<xsl:copy>
 			<xsl:apply-templates select="node()|@*" />
@@ -34,14 +34,14 @@
 					<xsl:value-of select="$color" />
 				</xsl:element>
 				<xsl:choose>
-					<xsl:when test="$price">
+					<xsl:when test="$price = 'not in stock'">
+						<xsl:element name="pr:not-in-stock" />
+					</xsl:when>
+					<xsl:otherwise>
 						<xsl:element name="pr:price">
 							<xsl:value-of select="$price" />
 						</xsl:element>
-					</xsl:when>
-					<xsl:otherwise>
-						<xsl:element name="pr:not-in-stock" />
-					</xsl:otherwise >
+					</xsl:otherwise>
 				</xsl:choose>
 			</xsl:element>
 		</xsl:copy>
