@@ -18,18 +18,18 @@
 		</pr:subcategory>
 		<pr:subcategory name="cargoTaxi">
 			<pr:good>
-				<pr:producer>dgdfg</pr:producer>
+				<pr:producer>dgdfg1</pr:producer>
 				<pr:model>tY121</pr:model>
-				<pr:date-of-issue>21-05-2013</pr:date-of-issue>
-				<pr:color>blue</pr:color>
-				<pr:price>1231124</pr:price>
+				<pr:date-of-issue>21-05-2011</pr:date-of-issue>
+				<pr:color>blue1</pr:color>
+				<pr:price>1111</pr:price>
 			</pr:good>
-		</pr:subcategory>
+		<pr:good><pr:producer>gh1</pr:producer><pr:model>gh341</pr:model><pr:date-of-issue>12-12-2011</pr:date-of-issue><pr:color>gfh1</pr:color><pr:not-in-stock/></pr:good><pr:good><pr:producer>ffffffff1</pr:producer><pr:model>df231</pr:model><pr:date-of-issue>12-12-2001</pr:date-of-issue><pr:color>asdfaf1</pr:color><pr:price>1111</pr:price></pr:good></pr:subcategory>
 	</pr:category>
 	<pr:category name="ice-cream">
 		<pr:subcategory name="fruit ice-cream">
 			<pr:good>
-				<pr:producer>ssg</pr:producer>
+				<pr:producer>jhljkh</pr:producer>
 				<pr:model>IC321</pr:model>
 				<pr:date-of-issue>21-12-2001</pr:date-of-issue>
 				<pr:color>dfg</pr:color>
@@ -39,7 +39,7 @@
 				<pr:producer>fd343</pr:producer>
 				<pr:model>fd343</pr:model>
 				<pr:date-of-issue>12-12-2011</pr:date-of-issue>
-				<pr:color>sgsgsdg</pr:color>
+				<pr:color>hghjg</pr:color>
 				<pr:not-in-stock/>
 			</pr:good>
 		</pr:subcategory>
