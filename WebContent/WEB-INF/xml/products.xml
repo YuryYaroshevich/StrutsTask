@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><pr:products xmlns:pr="http://www.epam.com/products" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.epam.com/products products.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<pr:products xmlns:pr="http://www.epam.com/products" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.epam.com/products products.xsd">
 	<pr:category name="car">
 		<pr:subcategory name="taxi">
 			<pr:good>
@@ -6,16 +7,9 @@
 				<pr:model>ik565</pr:model>
 				<pr:date-of-issue>04-11-2012</pr:date-of-issue>
 				<pr:color>yellow</pr:color>
-				<pr:not-in-stock/>
+				<pr:not-in-stock />
 			</pr:good>
-			<pr:good>
-				<pr:producer>reter</pr:producer>
-				<pr:model>Yu545</pr:model>
-				<pr:date-of-issue>04-11-2011</pr:date-of-issue>
-				<pr:color>sfsdgs</pr:color>
-				<pr:price>345</pr:price>
-			</pr:good>
-		</pr:subcategory>
+		<pr:good><pr:producer>ere</pr:producer><pr:model>er343</pr:model><pr:date-of-issue>12-12-2011</pr:date-of-issue><pr:color>sfsdf</pr:color><pr:not-in-stock /></pr:good></pr:subcategory>
 		<pr:subcategory name="cargoTaxi">
 			<pr:good>
 				<pr:producer>dgdfg1</pr:producer>
@@ -24,7 +18,7 @@
 				<pr:color>blue1</pr:color>
 				<pr:price>1111</pr:price>
 			</pr:good>
-		<pr:good><pr:producer>gh1</pr:producer><pr:model>gh341</pr:model><pr:date-of-issue>12-12-2011</pr:date-of-issue><pr:color>gfh1</pr:color><pr:not-in-stock/></pr:good><pr:good><pr:producer>ffffffff1</pr:producer><pr:model>df231</pr:model><pr:date-of-issue>12-12-2001</pr:date-of-issue><pr:color>asdfaf1</pr:color><pr:price>1111</pr:price></pr:good></pr:subcategory>
+		</pr:subcategory>
 	</pr:category>
 	<pr:category name="ice-cream">
 		<pr:subcategory name="fruit ice-cream">
@@ -36,11 +30,11 @@
 				<pr:price>353</pr:price>
 			</pr:good>
 			<pr:good>
-				<pr:producer>fd343</pr:producer>
-				<pr:model>fd343</pr:model>
+				<pr:producer>qw</pr:producer>
+				<pr:model>qw121</pr:model>
 				<pr:date-of-issue>12-12-2011</pr:date-of-issue>
-				<pr:color>hghjg</pr:color>
-				<pr:not-in-stock/>
+				<pr:color>fsdfs</pr:color>
+				<pr:price>34534</pr:price>
 			</pr:good>
 		</pr:subcategory>
 	</pr:category>

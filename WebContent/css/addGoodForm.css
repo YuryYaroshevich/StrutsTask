@@ -1,12 +1,14 @@
-#save {
-	margin-left: 96px;
+h2 {
+	margin-top: 0px;
+}
+
+#save, #cancel {
+	margin-top: 20px;
 }
 
 #cancel {
 	margin-left: 20px;
 }
 
-div#control-buttons {
-	margin-top: 20px;
-}
+
 

@@ -15,14 +15,8 @@
 			<forward name="categories" path="/WEB-INF/pages/categories.jsp" />
 			<forward name="subcategories" path="/WEB-INF/pages/subcategories.jsp" />
 			<forward name="goods" path="/WEB-INF/pages/goods.jsp" />
-			<forward name="addGood" path="/WEB-INF/pages/addGood.jsp" />
 		</action>
 	</action-mappings>
 
 	<message-resources parameter="com.epam.st.resource.appresource" />
-
-	<plug-in className="org.apache.struts.validator.ValidatorPlugIn">
-		<set-property property="pathnames"
-			value="/WEB-INF/validator-rules.xml, /WEB-INF/validation.xml" />
-	</plug-in>
 </struts-config>

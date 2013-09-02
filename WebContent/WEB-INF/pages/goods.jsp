@@ -25,14 +25,14 @@
 	var emptyPriceMsg = '<bean:message key="empty.price" />';
 	var wrongPriceFormatMsg = '<bean:message key="wrong.price.format" />';
 </script>
-<nested:define id="subcategoryName" name="shopForm"
+<bean:define id="subcategoryName" name="shopForm"
 	property="subcategoryName" />
 <title>Goods of ${subcategoryName}</title>
 </head>
 <body>
 	<h2>Goods of ${subcategoryName}</h2>
 
-	<nested:define id="categoryName" name="shopForm"
+	<bean:define id="categoryName" name="shopForm"
 		property="categoryName" />
 	<bean:define id="categoryId" name="shopForm" property="categoryId" />
 	<bean:define id="subcategoryId" name="shopForm"
@@ -82,15 +82,15 @@
 		</nested:form>
 
 		<div id="control-buttons">
+			<html:form styleId="back-button"
+				action="shop.do?method=subcategories&categoryName=${categoryName}">
+				<html:submit>BACK</html:submit>
+			</html:form>
 			<html:form action="shop.do?method=addGood" method="POST"
 				styleId="add-button">
 				<html:hidden property="categoryName" value="${categoryName}" />
 				<html:hidden property="subcategoryName" value="${subcategoryName}" />
-				<html:submit>ADD GOOD</html:submit>
-			</html:form>
-			<html:form styleId="back-button"
-				action="shop.do?method=subcategories&categoryName=${categoryName}">
-				<html:submit>BACK</html:submit>
+				<html:submit>ADD</html:submit>
 			</html:form>
 		</div>
 	</div>

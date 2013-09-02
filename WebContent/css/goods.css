@@ -1,3 +1,9 @@
+table, td, tr, div input, form {
+	margin: 0;
+}
+
+
+
 div#content {
 	width: 727px;
 }
@@ -10,17 +16,18 @@ td {
 	border-right: 20px solid white;
 }
 
-div#control-buttons {
-	clear: both;
-}
 
 #update-button {
-	margin-top: 20px;
-	float: right;
-	margin-bottom: 20px;
+	position: relative;
+	left: 148px;
+	top: 24px;
+}
+
+#back-button {
+	float: left;
 }
 
 #add-button {
 	float: left;
-	margin-right: 30px;
+	margin-left: 20px;
 }
