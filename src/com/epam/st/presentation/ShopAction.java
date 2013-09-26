@@ -24,6 +24,7 @@ import org.jdom2.Document;
 import org.jdom2.input.SAXBuilder;
 
 import com.epam.st.util.GoodValidator;
+import com.epam.st.util.ParameterTransporter;
 import com.epam.st.util.ProductsJDOMHandler;
 import com.epam.st.util.ProductsXmlIO;
 import com.epam.st.util.Synchronizer;
@@ -33,14 +34,6 @@ public final class ShopAction extends DispatchAction {
 	private static final String CATEGORIES_FORWARD = "categories";
 	private static final String SUBCATERIES_FORWARD = "subcategories";
 	private static final String GOODS_FORWARD = "goods";
-
-	// parameter names for taking values from request and setting values in
-	// transformer
-	private static final String PRODUCER = "producer";
-	private static final String MODEL = "model";
-	private static final String DATE_OF_ISSUE = "dateOfIssue";
-	private static final String COLOR = "color";
-	private static final String PRICE = "price";
 
 	private static final String REDIRECT_QUERY_START = "redirect.query.start";
 
@@ -141,14 +134,7 @@ public final class ShopAction extends DispatchAction {
 			HttpServletRequest req) {
 		GoodValidator validator = new GoodValidator();
 		transf.setParameter(VALIDATOR, validator);
-		transf.setParameter(CATEGORY_NAME, req.getParameter(CATEGORY_NAME));
-		transf.setParameter(SUBCATEGORY_NAME,
-				req.getParameter(SUBCATEGORY_NAME));
-		transf.setParameter(PRODUCER, req.getParameter(PRODUCER));
-		transf.setParameter(MODEL, req.getParameter(MODEL));
-		transf.setParameter(DATE_OF_ISSUE, req.getParameter(DATE_OF_ISSUE));
-		transf.setParameter(COLOR, req.getParameter(COLOR));
-		transf.setParameter(PRICE, req.getParameter(PRICE));
+		ParameterTransporter.transportFromRequestToTransformer(req, transf);
 		return validator;
 	}
 

@@ -32,8 +32,7 @@
 <body>
 	<h2>Goods of ${subcategoryName}</h2>
 
-	<bean:define id="categoryName" name="shopForm"
-		property="categoryName" />
+	<bean:define id="categoryName" name="shopForm" property="categoryName" />
 	<bean:define id="categoryId" name="shopForm" property="categoryId" />
 	<bean:define id="subcategoryId" name="shopForm"
 		property="subcategoryId" />
@@ -49,12 +48,9 @@
 					<td>Color</td>
 					<td>Price</td>
 				</tr>
-				<logic:iterate name="shopForm"
-					property="productsJDOM.rootElement.children[${categoryId}].children[${subcategoryId}].children"
-					id="good" indexId="goodId">
-
-					<nested:nest
-						property="productsJDOM.rootElement.children[${categoryId}].children[${subcategoryId}].children[${goodId}]">
+				<nested:nest
+					property="productsJDOM.rootElement.children[${categoryId}].children[${subcategoryId}]">
+					<nested:iterate property="children" id="good" indexId="goodId">
 						<tr id="${goodId}" class="good-parameters">
 							<td><nested:text size="20" styleClass="producer"
 									property="children[0].text" /></td>
@@ -69,14 +65,14 @@
 								<td><nested:text size="20" styleClass="price"
 										property="children[4].text" /></td>
 							</logic:equal>
-							<logic:notEqual name="good" value="price"
+							<nested:notEqual value="price"
 								property="children[4].name">
 								<td><nested:text size="20" styleClass="price"
 										property="children[4].text" value="not in stock" /></td>
-							</logic:notEqual>
+							</nested:notEqual>
 						</tr>
-					</nested:nest>
-				</logic:iterate>
+					</nested:iterate>
+				</nested:nest>
 			</table>
 			<nested:submit styleId="update-button">UPDATE GOODS</nested:submit>
 		</nested:form>

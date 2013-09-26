@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pr:products xmlns:pr="http://www.epam.com/products" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.epam.com/products products.xsd">
+<pr:products xmlns:pr="http://www.epam.com/products"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.epam.com/products products.xsd">
 	<pr:category name="car">
 		<pr:subcategory name="taxi">
 			<pr:good>
-				<pr:producer>dgggdfd</pr:producer>
+				<pr:producer>qqqqqqqqq</pr:producer>
 				<pr:model>ik565</pr:model>
 				<pr:date-of-issue>04-11-2012</pr:date-of-issue>
 				<pr:color>yellow</pr:color>
 				<pr:not-in-stock />
 			</pr:good>
 			<pr:good>
-				<pr:producer>ere</pr:producer>
+				<pr:producer>ere121212</pr:producer>
 				<pr:model>er343</pr:model>
 				<pr:date-of-issue>12-12-2011</pr:date-of-issue>
-				<pr:color>sfsdf</pr:color>
+				<pr:color>qqqqq</pr:color>
 				<pr:not-in-stock />
 			</pr:good>
 		</pr:subcategory>
@@ -26,11 +28,18 @@
 				<pr:price>1111</pr:price>
 			</pr:good>
 			<pr:good>
-				<pr:producer>qw</pr:producer>
+				<pr:producer>dfgdg</pr:producer>
 				<pr:model>qw121</pr:model>
 				<pr:date-of-issue>12-12-2011</pr:date-of-issue>
 				<pr:color>wrwe</pr:color>
 				<pr:price>234234</pr:price>
+			</pr:good>
+			<pr:good>
+				<pr:producer>qwedfgdfg</pr:producer>
+				<pr:model>we232</pr:model>
+				<pr:date-of-issue>12-12-2011</pr:date-of-issue>
+				<pr:color>sfs</pr:color>
+				<pr:not-in-stock />
 			</pr:good>
 		</pr:subcategory>
 	</pr:category>
@@ -50,6 +59,34 @@
 				<pr:color>zxc1</pr:color>
 				<pr:price>24234341</pr:price>
 			</pr:good>
-		<pr:good><pr:producer>sfsfsdf1</pr:producer><pr:model>qw121</pr:model><pr:date-of-issue>12-12-2011</pr:date-of-issue><pr:color>fsd1</pr:color><pr:not-in-stock /></pr:good><pr:good><pr:producer>zxczx1</pr:producer><pr:model>qw121</pr:model><pr:date-of-issue>12-12-2011</pr:date-of-issue><pr:color>s1</pr:color><pr:not-in-stock /></pr:good><pr:good><pr:producer>dasda1</pr:producer><pr:model>qw221</pr:model><pr:date-of-issue>12-12-2011</pr:date-of-issue><pr:color>adf1</pr:color><pr:not-in-stock /></pr:good><pr:good><pr:producer>ffffffffffff1</pr:producer><pr:model>sd341</pr:model><pr:date-of-issue>12-12-2001</pr:date-of-issue><pr:color>ddd1</pr:color><pr:price>44444444444</pr:price></pr:good></pr:subcategory>
+			<pr:good>
+				<pr:producer>wwww</pr:producer>
+				<pr:model>qw121</pr:model>
+				<pr:date-of-issue>12-12-2011</pr:date-of-issue>
+				<pr:color>fsd1</pr:color>
+				<pr:not-in-stock />
+			</pr:good>
+			<pr:good>
+				<pr:producer>wwww</pr:producer>
+				<pr:model>qw121</pr:model>
+				<pr:date-of-issue>12-12-2011</pr:date-of-issue>
+				<pr:color>s1</pr:color>
+				<pr:not-in-stock />
+			</pr:good>
+			<pr:good>
+				<pr:producer>dasda1</pr:producer>
+				<pr:model>qw221</pr:model>
+				<pr:date-of-issue>12-12-2011</pr:date-of-issue>
+				<pr:color>adf1</pr:color>
+				<pr:not-in-stock />
+			</pr:good>
+			<pr:good>
+				<pr:producer>wwww</pr:producer>
+				<pr:model>sd341</pr:model>
+				<pr:date-of-issue>12-12-2001</pr:date-of-issue>
+				<pr:color>ddd1</pr:color>
+				<pr:price>44444444444</pr:price>
+			</pr:good>
+		</pr:subcategory>
 	</pr:category>
 </pr:products>
