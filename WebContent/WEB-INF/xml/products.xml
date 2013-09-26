@@ -37,19 +37,19 @@
 	<pr:category name="ice-cream">
 		<pr:subcategory name="fruit ice-cream">
 			<pr:good>
-				<pr:producer>jhljkh</pr:producer>
+				<pr:producer>jhljkh1</pr:producer>
 				<pr:model>IC321</pr:model>
 				<pr:date-of-issue>21-12-2001</pr:date-of-issue>
-				<pr:color>sdffsds</pr:color>
-				<pr:price>353</pr:price>
+				<pr:color>sdffs1</pr:color>
+				<pr:price>234531</pr:price>
 			</pr:good>
 			<pr:good>
-				<pr:producer>qw</pr:producer>
+				<pr:producer>qw1</pr:producer>
 				<pr:model>qw121</pr:model>
 				<pr:date-of-issue>12-12-2011</pr:date-of-issue>
-				<pr:color>fsdfs</pr:color>
-				<pr:price>24234342</pr:price>
+				<pr:color>zxc1</pr:color>
+				<pr:price>24234341</pr:price>
 			</pr:good>
-		<pr:good><pr:producer>sfsfsdf</pr:producer><pr:model>qw121</pr:model><pr:date-of-issue>12-12-2011</pr:date-of-issue><pr:color>fsdfs</pr:color><pr:not-in-stock /></pr:good></pr:subcategory>
+		<pr:good><pr:producer>sfsfsdf1</pr:producer><pr:model>qw121</pr:model><pr:date-of-issue>12-12-2011</pr:date-of-issue><pr:color>fsd1</pr:color><pr:not-in-stock /></pr:good><pr:good><pr:producer>zxczx1</pr:producer><pr:model>qw121</pr:model><pr:date-of-issue>12-12-2011</pr:date-of-issue><pr:color>s1</pr:color><pr:not-in-stock /></pr:good><pr:good><pr:producer>dasda1</pr:producer><pr:model>qw221</pr:model><pr:date-of-issue>12-12-2011</pr:date-of-issue><pr:color>adf1</pr:color><pr:not-in-stock /></pr:good><pr:good><pr:producer>ffffffffffff1</pr:producer><pr:model>sd341</pr:model><pr:date-of-issue>12-12-2001</pr:date-of-issue><pr:color>ddd1</pr:color><pr:price>44444444444</pr:price></pr:good></pr:subcategory>
 	</pr:category>
 </pr:products>
